@@ -1,0 +1,20 @@
+
+.markdown-content pre {
+    background-color: #f8f9fa;
+    padding: 1em;
+    border-radius: 6px;
+}
+
+.markdown-content {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.markdown-content h1, h2, h3 {
+    font-family: 'Roboto', sans-serif;
+}
+
+.markdown-content p {
+    margin-bottom: 1.5rem;
+}

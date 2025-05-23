@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}{{ post.title }} - MyPortfolio{% endblock %}
+
+{% block content %}
+<article class="markdown-content">
+    <h2>{{ post.title }}</h2>
+    <p class="text-muted">{{ post.created_at|date:"F d, Y" }}</p>
+
+    {% if post.featured_image %}
+        <img src="{{ post.featured_image.url }}" class="img-fluid mb-4" alt="{{ post.title }}">
+    {% endif %}
+
+    {{ post.render_markdown|safe }}
+</article>
+
+<a href="{% url 'blog:post_list' %}" class="btn btn-outline-secondary mt-4">← Back to Blog</a>
+{% endblock %}

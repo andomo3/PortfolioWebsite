@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Projects - MyPortfolio{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Projects</h2>
+<div class="row">
+    {% for project in projects %}
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            {% if project.image %}
+            <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">
+                    <a href="{% url 'projects:project_detail' pk=project.pk %}">
+                        {{ project.title }}
+                    </a>
+                </h5>
+                <p class="card-text">{{ project.description|truncatewords:25 }}</p>
+                <p><strong>Tech Stack:</strong> {{ project.tech_stack }}</p>
+                {% if project.project_url %}
+                <a href="{{ project.project_url }}" class="btn btn-outline-primary btn-sm" target="_blank">View Project</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
