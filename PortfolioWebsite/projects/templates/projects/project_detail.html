@@ -2,22 +2,34 @@
 {% block title %}{{ project.title }} - MyPortfolio{% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="col-md-8">
+<div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
         <h2>{{ project.title }}</h2>
         <p class="text-muted">{{ project.created_at|date:"F d, Y" }}</p>
 
         {% if project.image %}
-        <img src="{{ project.image.url }}" class="img-fluid mb-3" alt="{{ project.title }}">
+        <img src="{{ project.image.url }}" class="img-fluid mb-3 rounded shadow-sm" alt="{{ project.title }}">
         {% endif %}
 
-        <p>{{ project.description }}</p>
-        <p><strong>Tech Stack:</strong> {{ project.tech_stack }}</p>
+        <div class="markdown-content mb-3">
+            {{ project.render_description|safe }}
+        </div>
+
+        <p class="mb-2"><strong>Tech Stack:</strong> {{ project.tech_stack }}</p>
 
         {% if project.project_url %}
-        <a href="{{ project.project_url }}" class="btn btn-primary mt-2" target="_blank">Visit Project</a>
+        <a href="{{ project.project_url }}" class="btn btn-primary btn-sm mt-2" target="_blank">Visit Project</a>
         {% endif %}
+
+        {% if project.embed_code %}
+        <div class="d-flex justify-content-center my-4">
+            <div class="ratio ratio-16x9 shadow-sm rounded overflow-hidden" style="width: 100%; max-width: 720px;">
+                {{ project.embed_code|safe }}
+            </div>
+        </div>
+        {% endif %}
+
+        <a href="{% url 'projects:project_list' %}" class="btn btn-outline-secondary mt-4">← Back to Projects</a>
     </div>
 </div>
-<a href="{% url 'projects:project_list' %}" class="btn btn-outline-secondary mt-4">← Back to Projects</a>
 {% endblock %}

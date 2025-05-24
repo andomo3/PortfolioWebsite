@@ -1,9 +1,152 @@
 {% extends 'base.html' %}
-{% block title %}Welcome - MyPortfolio{% endblock %}
+{% block title %}Home - MyPortfolio{% endblock %}
+{% load static %}
 
 {% block content %}
-<div class="text-center mt-5">
-    <h1>Welcome to My Portfolio</h1>
-    <p class="lead">Explore my projects, blog, and testimonials using the navigation above.</p>
+<div class="text-center py-5" data-aos="fade-up">
+    <h1 class="display-4">Hey there, I'm Abba (a·buh)... </h1>
+    <p class="lead">A traveller, problem solver, opportunist, and people-person</p>
 </div>
+
+<hr>
+
+<div class="row align-items-center my-5" data-aos="fade-up">
+    <div class="col-md-6 text-center mb-4 mb-md-0">
+        <img id="intro-headshot" src="{% static 'images/headshot.jpg' %}" alt="Abba"
+            class="img-fluid rounded shadow transition-scale"
+            style="max-width: 390px; height: auto; object-fit: cover;
+                transition: all 0.4s ease;">
+
+    </div>
+    <div class="col-md-6">
+        <h2 class="fw-bold">Essentially,</h2>
+        <p class="lead">I'm more than an Industrial Engineer. I'm a quantitative thinker and problem solver, passionate about using data, code, and creativity to design tools, uncover insights, and build scalable web solutions.</p>
+
+        <p class="text-muted mb-2" id="intro-preview">
+            I’m a globally-rooted software engineering candidate with a relentless drive to learn, build, and make a difference.
+            <a class="link-primary" data-bs-toggle="collapse" href="#fullIntro" role="button" aria-expanded="false" aria-controls="fullIntro">
+                Read more
+            </a>
+        </p>
+
+        <div class="collapse" id="fullIntro">
+            <p class="text-muted">
+                Having lived across six countries and spoken four languages fluently, I’ve developed more than just adaptability—I’ve cultivated a deep appreciation for complexity, nuance, and the power of technology to transcend borders.
+            </p>
+            <p class='text-muted'>
+                My journey is grounded in precision and fueled by passion. At KPMG, I benchmarked large language models during a fintech internship; at Georgia Tech, I modeled financial signals for a $2M+ student investment fund. Whether I’m architecting full-stack Django applications or optimizing algorithms under pressure, I bring intellectual rigor, creative problem-solving, and unwavering commitment to growth.
+            </p>
+            <p class='text-muted'>    
+                But above all, I’m a builder of meaningful things. I seek out overlooked problems, embrace ambiguity, and take pride in transforming raw ideas into scalable, high-impact solutions. I’m not just looking for my next opportunity—I’m looking for a team that’s equally obsessed with pushing boundaries and turning vision into value.
+            </p>
+            <P>
+                Let’s build something that matters.
+
+            </P>
+            <a class="link-secondary" data-bs-toggle="collapse" href="#fullIntro" role="button" aria-expanded="true" aria-controls="fullIntro">
+                Show less
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<section class="my-5">
+    <h2 class="text-center mb-4">✨ Featured Projects</h2>
+    <div class="row">
+        {% for project in featured_projects %}
+            <div class="col-md-4 mb-4" data-aos="zoom-in">
+                <div class="card h-100 shadow-sm">
+                {% if project.image %}
+                <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ project.title }}</h5>
+                    <p class="card-text">{{ project.description|truncatewords:20 }}</p>
+                    <a href="{% url 'projects:project_detail' pk=project.pk %}" class="btn btn-primary btn-sm">View</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<hr>
+
+<section class="my-5">
+    <h2 class="text-center mb-4">🔍 Highlights</h2>
+    <div class="row text-center">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <i class="bi bi-code-slash" style="font-size: 2rem;"></i>
+            <h5 class="mt-2">Full-Stack Development</h5>
+            <p>End-to-end web applications using Django, PostgreSQL, and Bootstrap.</p>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <i class="bi bi-code-slash" style="font-size: 2rem;"></i>
+            <h5 class="mt-2">Quantitative Analysis</h5>
+            <p>Data science meets finance — from factor models to backtesting.</p>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <i class="bi bi-code-slash" style="font-size: 2rem;"></i>
+            <h5 class="mt-2">Creative Problem Solving</h5>
+            <p>Design-first, solution-focused mindset that bridges analytics & impact.</p>
+        </div>
+    </div>
+</section>
+
+<hr>
+
+<section class="my-5">
+    <h2 class="text-center mb-4">🏅 Awards & Achievements</h2>
+    <div class="row">
+        <div class="col-md-6 mb-3" data-aos="fade-up">
+            <h5 class="fw-bold">ISYExCASE Peer Inspiration Award (2025)</h5>
+            <p>Awarded for demonstrating exceptional Commitemnt,  Growth, and Engagement at the MentIE 24-25 Cohort </p>
+        </div>
+        <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="100">
+            <h5 class="fw-bold">Dean's List @ Georgia Tech</h5>
+            <p>Awarded for maintaining a high GPA</p>
+        </div>
+    </div>
+</section>
+
+<hr>
+
+<section class="my-5">
+    <h2 class="text-center mb-4">📘 Courses & Certifications</h2>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item" data-aos="fade-right" data-aos-delay="200">MATH 1564: Honors Linear Algebra w/ Abstract Vector Spaces</li>
+
+        <li class="list-group-item" data-aos="fade-right">ISYE 2027: Probability & its Applications (Georgia Tech)</li>
+        <li class="list-group-item" data-aos="fade-right" data-aos-delay="200">ISYE 3030: Basic Statistical Methods</li>
+        <li class="list-group-item" data-aos="fade-right" data-aos-delay="200">CS 1331: Introduction to Object Oriented Programming</li>
+        <li class="list-group-item" data-aos="fade-right" data-aos-delay="200">MATH 2106: Foundations of Mathematical Proof</li>        
+        <li class="list-group-item" data-aos="fade-right">CS 1332: Data Structures & Algorithms (Georgia Tech)</li>
+        <li class="list-group-item" data-aos="fade-right" data-aos-delay="100">GTSF Quant Sector: Statistical Inference for Quantitative Finance</li>
+    </ul>
+</section>
+
+<hr>
+
+<section class="my-5">
+    <h2 class="text-center mb-4">🖼️ Featured Media</h2>
+    <div class="row justify-content-center">
+
+        <!-- Facebook Video -->
+        <div class="col-md-6 mb-4 d-flex justify-content-center" data-aos="zoom-in">
+            <div class="shadow-sm rounded overflow-hidden"
+                style="width: 476px; height: 476px; border: 1px solid #ccc;">
+                <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2FISyEGeorgiaTech%2Fvideos%2F1669082183701545%2F&show_text=false&width=476&t=0"
+                        style="border: none; width: 100%; height: 100%;"
+                        scrolling="no" frameborder="0" allowfullscreen
+                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                </iframe>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+
 {% endblock %}

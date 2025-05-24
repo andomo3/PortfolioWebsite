@@ -7,15 +7,21 @@
     {% for testimonial in testimonials %}
     <div class="col-md-6 mb-4">
         <div class="card h-100">
-            <div class="card-body">
-                <blockquote class="blockquote mb-0">
-                    <p>“{{ testimonial.quote }}”</p>
-                    <footer class="blockquote-footer">
-                        {{ testimonial.author_name }}
-                        {% if testimonial.role %}<cite title="Role">, {{ testimonial.role }}</cite>{% endif %}
-                    </footer>
-                </blockquote>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+            <p>“{{ testimonial.quote }}”</p>
+            <footer class="blockquote-footer">
+                {{ testimonial.author_name }}
+                {% if testimonial.role %}, {{ testimonial.role }}{% endif %}
+            </footer>
+            </blockquote>
+
+            {% if testimonial.embed_code %}
+            <div class="ratio ratio-16x9 mt-3">
+            {{ testimonial.embed_code|safe }}
             </div>
+            {% endif %}
+        </div>
         </div>
     </div>
     {% endfor %}

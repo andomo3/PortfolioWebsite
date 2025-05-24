@@ -22,6 +22,14 @@
                 <a href="{{ project.project_url }}" class="btn btn-outline-primary btn-sm" target="_blank">View Project</a>
                 {% endif %}
             </div>
+            {% if project.embed_code %}
+            <div class="d-flex justify-content-center my-4" style="width: 90%; border-radius: 16px; overflow: hidden">
+                <div class="ratio ratio-16x9 shadow-sm"
+                    style="width: 90%; max-width: 720px; border-radius: 16px; overflow: hidden;">
+                {{ project.embed_code|safe }}
+                </div>
+            </div>
+            {% endif %}     
         </div>
     </div>
     {% endfor %}
