@@ -72,6 +72,20 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
+<footer class="text-center py-4 mt-5" style="background-color: #f0e3d3; color: #4a3c2b;">
+    <div class="container">
+        <p class="mb-1">© {{ now|date:"Y" }} Abba</p>
+        <p class="mb-0">
+            <a href="{% url 'resume:resume' %}" class="me-3">Resume</a>
+            <a href="{% url 'projects:project_list' %}" class="me-3">Projects</a>
+            <a href="{% url 'blog:post_list' %}" class="me-3">Blog</a>
+            <a href="{% url 'contact:contact' %}">
+                <i class="bi bi-envelope-fill me-1"></i> Contact
+            </a>
+        </p>
+    </div>
+</footer>
+
 </body>
 
 <!-- AOS JS -->
