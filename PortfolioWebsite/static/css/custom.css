@@ -133,3 +133,44 @@ footer {
     text-decoration: none;
     color: #fff !important;
 }
+
+/* Add gentle glow on hover and idle pulse */
+/* Add gentle glow on hover and idle pulse */
+.interactive-hero {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: idlePulse 4s infinite;
+    border-radius: 12px;
+    border:none;
+    background-color: transparent;
+    padding: 1rem;
+}
+
+.interactive-hero:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(139, 111, 71, 0.15);
+}
+
+@keyframes idlePulse {
+    0%, 100% {
+        box-shadow: 0 0 0 rgba(139, 111, 71, 0);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(139, 111, 71, 0.12);
+    }
+}
+
+.interactive-hero h1 {
+    background: linear-gradient(90deg, #8b6f47, #dbc6b0, #8b6f47);
+    background-size: 200% auto;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    animation: shimmer 5s linear infinite;
+    font-style:oblique;
+    font-weight: bold;
+}
+
+@keyframes shimmer {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
