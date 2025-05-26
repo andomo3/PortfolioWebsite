@@ -31,6 +31,7 @@ urlpatterns = [
 ]
 
 
-# ✅ Append this outside the urlpatterns list
+# ✅ Append this outside the urlpatterns list    
 if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
