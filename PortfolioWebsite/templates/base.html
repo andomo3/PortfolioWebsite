@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}My Portfolio{% endblock %}</title>
 
     <!-- ✅ Fonts should load before CSS so text renders properly -->
@@ -25,37 +26,44 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm" style="background-color: #8b6f47;">
-    <div class="container">
-        <a class="navbar-brand" href="{% url 'home:index' %}">
-            <i class="bi bi-house-door-fill me-1"></i> Home
-        </a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'projects:project_list' %}">
-                        <i class="bi bi-kanban-fill me-1"></i> Projects
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'blog:post_list' %}">
-                        <i class="bi bi-journal-text me-1"></i> Blog
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'testimonials:testimonial_list' %}">
-                        <i class="bi bi-chat-dots-fill me-1"></i> Testimonials
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'resume:resume' %}">
-                        <i class="bi bi-file-earmark-person-fill me-1"></i> Resume
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'home:index' %}">
+      <i class="bi bi-house-door-fill me-1"></i> Home
+    </a>
 
+    <!-- ✅ Navbar Toggler Button (for mobile) -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- ✅ Collapsible Content -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto flex-lg-row align-items-lg-center gap-2">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'projects:project_list' %}">
+            <i class="bi bi-kanban-fill me-1"></i> Projects
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'blog:post_list' %}">
+            <i class="bi bi-journal-text me-1"></i> Blog
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'testimonials:testimonial_list' %}">
+            <i class="bi bi-chat-dots-fill me-1"></i> Testimonials
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'resume:resume' %}">
+            <i class="bi bi-file-earmark-person-fill me-1"></i> Resume
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
 <main class="container mt-5">
     {% block content %}
