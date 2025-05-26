@@ -4,11 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}My Portfolio{% endblock %}</title>
+
+    <!-- ✅ Fonts should load before CSS so text renders properly -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/theme.css' %}">
-    <link rel="stylesheet" href="{% static 'css/custom.css' %}"> <!-- Optional for extra styles -->
+
+    <!-- ✅ Core Frameworks -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <!-- ✅ Animation Library (optional but should come before your CSS) -->
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- ✅ Your Theme (Bootswatch) -->
+    <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+
+    <!-- ✅ Your Custom Overrides — Always Last -->
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
 
 </head>
