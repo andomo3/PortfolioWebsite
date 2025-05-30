@@ -97,7 +97,7 @@ footer {
 }
 
 .expanded-headshot {
-    max-width: 360px !important;
+    max-width: 450 !important;
     transition: all 0.4s ease;
 }
 
