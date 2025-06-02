@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
+from .serve_media import serve_resume
 
 
 urlpatterns = [
@@ -28,6 +29,7 @@ urlpatterns = [
     path('testimonials/', include('testimonials.urls')),
     path('resume/', include('resume.urls')),
     path('contact/', include('contact.urls')),
+    path('media/resume/<str:filename>', serve_resume, name='serve_resume'),
 ]
 
 

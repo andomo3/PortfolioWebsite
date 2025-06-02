@@ -5,14 +5,9 @@
 {% block content %}
 <div class="text-center my-5">
     <h2 class="mb-4">📄 Resume</h2>
-    <object data="/media/resume/Abba_Resume.pdf" type="application/pdf" width="100%" height="600px">
-    <p>Your browser does not support PDF viewing. 
-        <a href="/media/resume/Abba_Resume.pdf" target="_blank" rel="noopener">Click here to view or download the file.</a>
-        </p>
-    </object>
+    <iframe src="{% url 'serve_resume' 'Abba_Resume.pdf' %}" width="100%" height="600px"></iframe>
 
-    <a href="/media/resume/Abba_Resume.pdf" class="btn btn-primary mt-3" download>Download PDF</a>
-
+    <a href="{% url 'serve_resume' 'Abba_Resume.pdf' %}" class="btn btn-primary mt-3" download>Download PDF</a>
 
 
 
