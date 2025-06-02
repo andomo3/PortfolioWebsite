@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from .serve_media import serve_resume
+from .serve_media import serve_blog_image
 
 
 urlpatterns = [
@@ -30,6 +31,7 @@ urlpatterns = [
     path('resume/', include('resume.urls')),
     path('contact/', include('contact.urls')),
     path('media/resume/<str:filename>', serve_resume, name='serve_resume'),
+    path('media/blog_images/<str:filename>', serve_blog_image, name='serve_blog_image'),
 ]
 
 

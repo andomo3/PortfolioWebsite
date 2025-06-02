@@ -7,7 +7,8 @@
     <p class="text-muted">{{ post.created_at|date:"F d, Y" }}</p>
 
     {% if post.featured_image %}
-        <img src="{{ post.featured_image.url }}" class="img-fluid mb-4" alt="{{ post.title }}">
+        <img src="{% url 'serve_blog_image' post.featured_image.name|cut:'blog_images/' %}"
+            class="img-fluid mb-4" alt="{{ post.title }}">
     {% endif %}
 
     {{ post.render_markdown|safe }}
