@@ -97,7 +97,7 @@ footer {
 }
 
 .expanded-headshot {
-    max-width: 360px !important;
+    max-width: 450 !important;
     transition: all 0.4s ease;
 }
 
@@ -173,4 +173,40 @@ footer {
 @keyframes shimmer {
     0% { background-position: 0% center; }
     100% { background-position: 200% center; }
+}
+
+
+.contact-info a {
+    color: #7c4a1d;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.contact-info a:hover {
+    color: #a25f2b;
+    text-decoration: underline;
+}
+
+
+.navbar-nav .nav-link {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+@media (max-width: 768px) {
+  .navbar-collapse {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+}
+
+.navbar-nav .nav-link {
+  font-weight: 500;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
 }
