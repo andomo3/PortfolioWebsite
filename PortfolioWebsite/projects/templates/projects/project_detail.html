@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}{{ project.title }} - MyPortfolio{% endblock %}
+{% block title %}{{ project.title }} - Abba Ndomo{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center">
@@ -29,7 +29,7 @@
         </div>
         {% endif %}
 
-        <a href="{% url 'projects:project_list' %}" class="btn btn-outline-secondary mt-4">← Back to Projects</a>
+        <a href="{% url 'projects:project_list' %}" class="btn btn-outline-secondary mt-4">Back to Projects</a>
     </div>
 </div>
 {% endblock %}

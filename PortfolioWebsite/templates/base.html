@@ -1,117 +1,128 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{% block title %}My Portfolio{% endblock %}</title>
 
-    <!-- ✅ Fonts should load before CSS so text renders properly -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/theme.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}" />
+    {% block extra_head %}{% endblock %}
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm"
+      style="background-color: #8b6f47"
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home:index' %}">
+          <i class="bi bi-house-door-fill me-1"></i> Home
+        </a>
 
-    <!-- ✅ Core Frameworks -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <!-- ✅ Animation Library (optional but should come before your CSS) -->
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul
+            class="navbar-nav ms-auto flex-lg-row align-items-lg-center gap-2"
+          >
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'projects:project_list' %}">
+                <i class="bi bi-kanban-fill me-1"></i> Projects
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'blog:post_list' %}">
+                <i class="bi bi-journal-text me-1"></i> Research
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="{% url 'testimonials:testimonial_list' %}"
+              >
+                <i class="bi bi-chat-dots-fill me-1"></i> Testimonials
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'resume:resume' %}">
+                <i class="bi bi-file-earmark-person-fill me-1"></i> Resume
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-    <!-- ✅ Your Theme (Bootswatch) -->
-    <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+    <main class="container mt-5">{% block content %} {% endblock %}</main>
 
-    <!-- ✅ Your Custom Overrides — Always Last -->
-    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
-
-</head>
-<body>
-
-<nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm" style="background-color: #8b6f47;">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'home:index' %}">
-      <i class="bi bi-house-door-fill me-1"></i> Home
-    </a>
-
-    <!-- ✅ Navbar Toggler Button (for mobile) -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- ✅ Collapsible Content -->
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto flex-lg-row align-items-lg-center gap-2">
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'projects:project_list' %}">
-            <i class="bi bi-kanban-fill me-1"></i> Projects
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'blog:post_list' %}">
-            <i class="bi bi-journal-text me-1"></i> Blog
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'testimonials:testimonial_list' %}">
-            <i class="bi bi-chat-dots-fill me-1"></i> Testimonials
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'resume:resume' %}">
-            <i class="bi bi-file-earmark-person-fill me-1"></i> Resume
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<main class="container mt-5">
-    {% block content %}
-    {% endblock %}
-</main>
-
-<footer class="text-center mt-5 mb-3">
-    <p>&copy; {{ now|date:"Y" }} MyPortfolio</p>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const headshot = document.getElementById('intro-headshot');
-    const introSection = document.getElementById('fullIntro');
-
-    introSection.addEventListener('show.bs.collapse', function () {
-        headshot.classList.add('expanded-headshot');
-    });
-
-    introSection.addEventListener('hide.bs.collapse', function () {
-        headshot.classList.remove('expanded-headshot');
-    });
-});
-</script>
-
-<footer class="text-center py-4 mt-5" style="background-color: #f0e3d3; color: #4a3c2b;">
-    <div class="container">
-        <p class="mb-1">© {{ now|date:"Y" }} Abba</p>
+    <footer
+      class="text-center py-4 mt-5"
+      style="background-color: #f0e3d3; color: #4a3c2b"
+    >
+      <div class="container">
+        <p class="mb-1">&copy; {{ now|date:"Y" }} Abba Ndomo</p>
         <p class="mb-0">
-            <a href="{% url 'resume:resume' %}" class="me-3">Resume</a>
-            <a href="{% url 'projects:project_list' %}" class="me-3">Projects</a>
-            <a href="{% url 'blog:post_list' %}" class="me-3">Blog</a>
-            <a href="{% url 'contact:contact' %}">
-                <i class="bi bi-envelope-fill me-1"></i> Contact
-            </a>
+          <a href="{% url 'resume:resume' %}" class="me-3">Resume</a>
+          <a href="{% url 'projects:project_list' %}" class="me-3">Projects</a>
+          <a href="{% url 'blog:post_list' %}" class="me-3">Blog</a>
+          <a href="{% url 'contact:contact' %}">
+            <i class="bi bi-envelope-fill me-1"></i> Contact
+          </a>
         </p>
-    </div>
-</footer>
+      </div>
+    </footer>
 
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const headshot = document.getElementById("intro-headshot");
+        const introSection = document.getElementById("fullIntro");
 
-<!-- AOS JS -->
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-<script>
-  AOS.init({
-    duration: 800,  // animation duration in ms
-    once: true      // animate only once
-  });
-</script>
+        if (headshot && introSection) {
+          introSection.addEventListener("show.bs.collapse", function () {
+            headshot.classList.add("expanded-headshot");
+          });
+
+          introSection.addEventListener("hide.bs.collapse", function () {
+            headshot.classList.remove("expanded-headshot");
+          });
+        }
+      });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        once: true,
+      });
+    </script>
+  </body>
 </html>

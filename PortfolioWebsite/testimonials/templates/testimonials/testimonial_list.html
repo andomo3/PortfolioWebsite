@@ -1,29 +1,26 @@
-{% extends 'base.html' %}
-{% block title %}Testimonials - MyPortfolio{% endblock %}
-
-{% block content %}
+{% extends 'base.html' %} {% block title %}Testimonials - Abba Ndomo{% endblock %} {% block content %}
 <h2 class="mb-4">Testimonials</h2>
 <div class="row">
-    {% for testimonial in testimonials %}
-    <div class="col-md-6 mb-4">
-        <div class="card h-100">
-        <div class="card-body">
-            <blockquote class="blockquote mb-0">
-            <p>“{{ testimonial.quote }}”</p>
-            <footer class="blockquote-footer">
-                {{ testimonial.author_name }}
-                {% if testimonial.role %}, {{ testimonial.role }}{% endif %}
-            </footer>
-            </blockquote>
+  {% for testimonial in testimonials %}
+  <div class="col-md-6 mb-4">
+    <div class="card h-100 shadow-sm">
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <p>{{ testimonial.quote }}</p>
+          <footer class="blockquote-footer">
+            {{ testimonial.author_name }} {% if testimonial.role %}, {{
+            testimonial.role }}{% endif %}
+          </footer>
+        </blockquote>
 
-            {% if testimonial.embed_code %}
-            <div class="ratio ratio-16x9 mt-3">
-            {{ testimonial.embed_code|safe }}
-            </div>
-            {% endif %}
+        {% if testimonial.embed_code %}
+        <div class="ratio ratio-16x9 mt-3">
+          {{ testimonial.embed_code|safe }}
         </div>
-        </div>
+        {% endif %}
+      </div>
     </div>
-    {% endfor %}
+  </div>
+  {% endfor %}
 </div>
 {% endblock %}

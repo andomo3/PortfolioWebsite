@@ -1,153 +1,459 @@
 {% extends 'base.html' %}
-{% block title %}Home - MyPortfolio{% endblock %}
 {% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+{% endblock %}
+
+{% block title %}Home{% endblock %}
 
 {% block content %}
 <div class="text-center py-5 interactive-hero" data-aos="fade-up">
-    <h1 class="display-4">Hi there, I'm Abba (a·buh)... </h1>
-    <p class="lead">A(n) traveller, opportunist, and people-person</p>
+  <p class="text-uppercase text-muted small mb-2">
+    Builder || Quant-Oriented Data Analyst
+  </p>
+  <h1 class="display-4 fw-bold">Hi, I'm Abba (ah-buh).</h1>
+  <p class="lead">
+    I am dependable and empathetic, with a strong passion for community and collaboration.
+  </p>
+  <div class="d-flex justify-content-center gap-2 flex-wrap mt-3">
+    <span class="badge status-badge soft"
+      >Actively seeking Summer 2025 Data Analyst</span
+    >
+    <span class="badge status-badge soft"
+      >Building: Boxxer AI </span
+    >
+    <span class="badge status-badge soft"
+      >Learning: Support Vector Machine, Deep Learning and Neural networks</span
+    >
+  </div>
 </div>
 
-<hr>
+<hr />
 
 <div class="row align-items-center my-5" data-aos="fade-up">
-    <div class="col-md-6 text-center mb-4 mb-md-0">
-        <img id="intro-headshot" src="{% static 'images/headshot.jpg' %}" class='img-fluid rounded' alt="Abba"
-            class="img-fluid rounded shadow transition-scale"
-            style="max-width: 300px; height: auto; object-fit: cover;
-                transition: all 0.4s ease;">
+  <div class="col-md-6 text-center mb-4 mb-md-0">
+    <img
+      id="intro-headshot"
+      src="{% static 'images/headshot.jpg' %}"
+      class="img-fluid rounded shadow transition-scale"
+      alt="Abba"
+      style="
+        max-width: 190px;
+        height: auto;
+        object-fit: cover;
+        transition: all 0.4s ease;
+      "
+    />
+  </div>
+  <div class="col-md-6">
+    <p class="lead">
+        I've lived across six countries and can read or write in 5 languages. 
+        I want to blend engineering rigor, quantitative thinking, probabilistic analysis to
+        create thoughtful experiences and have sustainable impact.
+    </p>
+    <p class="text-muted mb-2" id="intro-preview">
+      From benchmarking LLMs in fintech to modeling signals as a $2M+ student
+      fund mentee, I thrive where math, code, and design meet.
+      <a
+        class="link-primary"
+        data-bs-toggle="collapse"
+        href="#fullIntro"
+        role="button"
+        aria-expanded="false"
+        aria-controls="fullIntro"
+        >Read more</a
+      >
+    </p>
+    <div class="collapse" id="fullIntro">
+      <p class="text-muted">
+        Whether architecting full-stack Django apps, optimizing simulations, or shaping GenAI proofs of concept, I bring curiosity, calm
+        under pressure, and a bias for creating and shipping
+      </p>
+      <p class = 'text-muted'>
+        At Georgia Tech, I've built a reputation for being kind, dependable, and curious by serving as a member of the DEI Committee at the H.Milton Stewart School of Industrial
+        & Systems Engineering and as a Housing Office Assistant. Through both of these roles, I have supported hundreds of students by providing resources, hosting seasonal events, 
+        standardizing hiring processes and orchestrating discussions with senior faculty members to bring attention to urgent issues within the minority student community.  
 
+      </p>
+      <p class="text-muted">
+        My north star: build useful, resilient tools; communicate clearly; and
+        leave teams better than I found them.
+      </p>
+      <a
+        class="link-secondary"
+        data-bs-toggle="collapse"
+        href="#fullIntro"
+        role="button"
+        aria-expanded="true"
+        aria-controls="fullIntro"
+        >Show less</a
+      >
     </div>
-    <div class="col-md-6">
-        <h2 class="fw-bold">Essentially,</h2>
-
-        <p class="lead">I'm more than an Industrial Engineer. I'm a quantitative thinker and problem solver, passionate about using algorithms, programming, and creativity to design tools, uncover insights, and develop scalable web solutions.</p>
-
-        <p class="text-muted mb-2" id="intro-preview">
-            I’m a globally-rooted software engineering candidate with a relentless drive to learn, build, and make a difference.
-            <a class="link-primary" data-bs-toggle="collapse" href="#fullIntro" role="button" aria-expanded="false" aria-controls="fullIntro">
-                Read more
-            </a>
-        </p>
-
-        <div class="collapse" id="fullIntro">
-            <p class="text-muted">
-                Having lived across six countries and spoken more than four languages, I’ve developed more than just adaptability—I’ve cultivated a deep appreciation for complexity, nuance, and the power of technology to transcend borders.
-            </p>
-            <p class='text-muted'>
-                My journey is grounded in precision and fueled by passion. At KPMG, I benchmarked large language models during a fintech internship; at Georgia Tech, I modeled financial signals for a $2M+ student investment fund. Whether I’m architecting full-stack Django applications or optimizing algorithms under pressure, I bring intellectual rigor, creative problem-solving, and unwavering commitment to growth.
-            </p>
-            <p class='text-muted'>    
-                But above all, I’m a builder of meaningful things. I seek out overlooked problems, embrace ambiguity, and take pride in transforming raw ideas into scalable, high-impact solutions. I’m not just looking for my next opportunity—I’m looking for a team that’s equally obsessed with pushing boundaries and turning vision into value.
-            </p>
-            <P>
-                Let’s build something that matters.
-
-            </P>
-            <a class="link-secondary" data-bs-toggle="collapse" href="#fullIntro" role="button" aria-expanded="true" aria-controls="fullIntro">
-                Show less
-            </a>
-        </div>
-    </div>
+  </div>
 </div>
 
-
-<section class="my-5">
-    <h2 class="text-center mb-4">✨ Featured Projects</h2>
-    <div class="row">
-        {% for project in featured_projects %}
-            <div class="col-md-4 mb-4" data-aos="zoom-in">
-                <div class="card h-100 shadow-sm">
-                {% if project.image %}
-                <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
-                {% endif %}
-                <div class="card-body">
-                    <h5 class="card-title">{{ project.title }}</h5>
-                    <p class="card-text">{{ project.description|truncatewords:20 }}</p>
-                    <a href="{% url 'projects:project_detail' pk=project.pk %}" class="btn btn-primary btn-sm">View</a>
-                </div>
+<section class="my-5" id="experience">
+  
+  <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
+    <h2 class="mb-0">Experience &amp; Internships</h2>
+  </div>
+    <div class="timeline">
+      <div class="timeline-item" data-aos="fade-up" data-aos-delay="50">
+      <div class="timeline-dot"></div>
+      <div class="card shadow-sm experience-card">
+        <div class="card-body">
+          <div
+            class="d-flex justify-content-between flex-wrap align-items-center mb-2"
+          >
+            <div>
+              <h5 class="mb-1">Full Stack Project</h5>
+              <p class="mb-0 text-muted">Boxxer AI Atlanta, GA</p>
             </div>
+            <div class="text-end small text-muted">January 2025 - Present</div>
+          </div>
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <span class="badge tech-badge">FastAPI</span>
+            <span class="badge tech-badge">React Native</span>
+            <span class="badge tech-badge">Computer Vision</span>
+          </div>
+          <ul class="mb-3">
+            <li>
+              Decreased average packing time by 25% for frequent travelers by
+              architecting and implementing image recognition and object
+              detection modules using AI, deep learning, and GenAI concepts,
+              integrated with a scalable FastAPI backend and React Native
+              frontend.
+            </li>
+          </ul>
         </div>
-        {% endfor %}
+      </div>
     </div>
-</section>
-
-<hr>
-
-<section class="my-5">
-    <h2 class="text-center mb-4">🔍 Highlights</h2>
-    <div class="row text-center">
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-            <i class="bi bi-code-slash" style="font-size: 2rem;"></i>
-            <h5 class="mt-2">Full-Stack Development</h5>
-            <p>End-to-end web applications using Django, PostgreSQL, and Bootstrap.</p>
-        </div>
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-            <i class="bi bi-code-slash" style="font-size: 2rem;"></i>
-            <h5 class="mt-2">Quantitative Analysis</h5>
-            <p>Data science meets finance — from factor models to backtesting.</p>
-        </div>
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-            <i class="bi bi-code-slash" style="font-size: 2rem;"></i>
-            <h5 class="mt-2">Creative Problem Solving</h5>
-            <p>Design-first, solution-focused mindset that bridges analytics & impact.</p>
-        </div>
-    </div>
-</section>
-
-<hr>
-
-<section class="my-5">
-    <h2 class="text-center mb-4">🏅 Awards & Achievements</h2>
-    <div class="row">
-        <div class="col-md-6 mb-3" data-aos="fade-up">
-            <h5 class="fw-bold">ISYExCASE Peer Inspiration Award (2025)</h5>
-            <p>Awarded for demonstrating exceptional Commitemnt,  Growth, and Engagement during the 24-25 MentIE Mentorship Program </p>
-        </div>
-        <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="100">
-            <h5 class="fw-bold">Dean's List @ Georgia Tech</h5>
-            <p>Awarded for maintaining a high GPA</p>
-        </div>
-    </div>
-</section>
-
-<hr>
-
-<section class="my-5">
-    <h2 class="text-center mb-4">📘 Courses & Certifications</h2>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item" data-aos="fade-right" data-aos-delay="200">MATH 1564: Honors Linear Algebra w/ Abstract Vector Spaces (Georgia Tech)</li>
-
-        <li class="list-group-item" data-aos="fade-right">ISYE 2027: Probability & its Applications (Georgia Tech)</li>
-        <li class="list-group-item" data-aos="fade-right" data-aos-delay="200">ISYE 3030: Basic Statistical Methods (Georgia Tech)</li>
-        <li class="list-group-item" data-aos="fade-right" data-aos-delay="200">CS 1331: Introduction to Object Oriented Programming (Georgia Tech)</li>
-        <li class="list-group-item" data-aos="fade-right" data-aos-delay="200">MATH 2106: Foundations of Mathematical Proof (Georgia Tech) </li>        
-        <li class="list-group-item" data-aos="fade-right">CS 1332: Data Structures & Algorithms (Georgia Tech)</li>
-        <li class="list-group-item" data-aos="fade-right" data-aos-delay="100">GTSF Quant Sector: Statistical Inference for Quantitative Finance (Georgia Tech)</li>
-    </ul>
-</section>
-
-<hr>
-
-<section class="my-5">
-    <h2 class="text-center mb-4">🖼️ Featured Media</h2>
-    <div class="row justify-content-center">
-
-        <!-- Facebook Video -->
-        <div class="col-md-6 mb-4 d-flex justify-content-center" data-aos="zoom-in">
-            <div class="shadow-sm rounded overflow-hidden"
-                style="width: 476px; height: 476px; border: 1px solid #ccc;">
-                <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2FISyEGeorgiaTech%2Fvideos%2F1669082183701545%2F&show_text=false&width=476&t=0"
-                        style="border: none; width: 100%; height: 100%;"
-                        scrolling="no" frameborder="0" allowfullscreen
-                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
-                </iframe>
+      <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+      <div class="timeline-dot"></div>
+      <div class="card shadow-sm experience-card">
+        <div class="card-body">
+          <div
+            class="d-flex justify-content-between flex-wrap align-items-center mb-2"
+          >
+            <div>
+              <h5 class="mb-1">Quantitative Analyst Mentee</h5>
+              <p class="mb-0 text-muted">
+                Georgia Institute of Technology Atlanta, GA
+              </p>
             </div>
+            <div class="text-end small text-muted">January 2025 - May 2025</div>
+          </div>
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <span class="badge tech-badge">Python</span>
+            <span class="badge tech-badge">Backtesting</span>
+            <span class="badge tech-badge">Bloomberg</span>
+          </div>
+          <ul class="mb-3">
+            <li>
+              Refined portfolio selection criteria by applying regression and
+              time-series analysis to Bloomberg data, identifying
+              high-performing factor signals and leveraging AI techniques to
+              optimize strategies.
+            </li>
+          </ul>
         </div>
-
-
+      </div>
     </div>
+
+    <div class="timeline-item" data-aos="fade-up" data-aos-delay="150">
+      <div class="timeline-dot"></div>
+      <div class="card shadow-sm experience-card">
+        <div class="card-body">
+          <div
+            class="d-flex justify-content-between flex-wrap align-items-center mb-2"
+          >
+            <div>
+              <h5 class="mb-1">Software Engineering Intern</h5>
+              <p class="mb-0 text-muted">
+                KPMG 
+              </p>
+            </div>
+            <div class="text-end small text-muted">June 2024 - August 2024</div>
+          </div>
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <span class="badge tech-badge">Python</span>
+            <span class="badge tech-badge">Microservices</span>
+            <span class="badge tech-badge">CI/CD</span>
+          </div>
+          <ul class="mb-3">
+            <li>
+              Increased document retrieval accuracy to 95%+ across 1,000+ files
+              by engineering scalable backend microservices in Python,
+              integrating with CI/CD pipelines for automated deployment.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item" data-aos="fade-up">
+      <div class="timeline-dot"></div>
+      <div class="card shadow-sm experience-card">
+        <div class="card-body">
+          <div
+            class="d-flex justify-content-between flex-wrap align-items-center mb-2"
+          >
+            <div>
+              <h5 class="mb-1">DEI Committee </h5>
+              <p class="mb-0 text-muted">
+                Georgia Institute of Technology Atlanta, GA
+              </p>
+            </div>
+            <div class="text-end small text-muted">January 2025 - Present</div>
+          </div>
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <span class="badge tech-badge">Leadership</span>
+            <span class="badge tech-badge">Dashboards</span>
+            <span class="badge tech-badge">Agile</span>
+          </div>
+          <ul class="mb-3">
+            <li>
+              Streamlined DEI event architecture and speaker series management
+              by leading the digitization of committee workflows
+            </li>
+            <li>
+              Improved decision-making and process transparency for DEI
+              initiatives by 
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
 </section>
 
+<section class="my-5">
+  <h2 class="text-center mb-4">Featured Projects</h2>
+  <div class="row">
+    {% for project in featured_projects %}
+    <div class="col-md-4 mb-4" data-aos="zoom-in">
+      <div class="card h-100 shadow-sm project-hover">
+        {% if project.image %}
+        <img
+          src="{{ project.image.url }}"
+          class="card-img-top"
+          alt="{{ project.title }}"
+        />
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ project.title }}</h5>
+          <p class="card-text">{{ project.description|truncatewords:20 }}</p>
+          <a
+            href="{% url 'projects:project_detail' pk=project.pk %}"
+            class="btn btn-primary btn-sm"
+            >View</a
+          >
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <p class="text-muted text-center">
+      Add projects in the admin to feature them here.
+    </p>
+    {% endfor %}
+  </div>
+</section>
+
+<hr />
+
+<section class="my-5">
+  <h2 class="text-center mb-4">Highlights</h2>
+  <div class="row text-center">
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="50">
+      <i class="bi bi-cpu" style="font-size: 2rem"></i>
+      <h5 class="mt-2">Full-Stack &amp; Systems</h5>
+      <p>
+        Shipping Django/FastAPI services with CI/CD, observability, and clean
+        interfaces.
+      </p>
+    </div>
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+      <i class="bi bi-graph-up" style="font-size: 2rem"></i>
+      <h5 class="mt-2">Quant &amp; Data</h5>
+      <p>
+        Backtesting, factor research, and analytics with Python, NumPy, SciPy,
+        and Bloomberg.
+      </p>
+    </div>
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="150">
+      <i class="bi bi-people" style="font-size: 2rem"></i>
+      <h5 class="mt-2">Product &amp; People</h5>
+      <p>
+        Facilitating teams, writing crisp docs, and translating ambiguity into
+        shippable plans.
+      </p>
+    </div>
+  </div>
+</section>
+
+<hr />
+
+<section class="my-5">
+  <h2 class="text-center mb-4">Awards &amp; Achievements</h2>
+  <div class="row">
+    <div class="col-md-6 mb-3" data-aos="fade-up">
+      <h5 class="fw-bold">ISyE x CASE Peer Inspiration Award (2025)</h5>
+      <p>
+        Awarded for exceptional commitment, growth, and engagement during the
+        24-25 MentIE Mentorship Program.
+      </p>
+    </div>
+    <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="100">
+      <h5 class="fw-bold">Dean's List @ Georgia Tech</h5>
+      <p>Recognized for maintaining a high GPA.</p>
+    </div>
+  </div>
+</section>
+
+<hr />
+
+<section class="my-5">
+  <h2 class="text-center mb-4">Courses &amp; Certifications</h2>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item" data-aos="fade-right" data-aos-delay="200">
+      CS 4641: Machine Learning (Georiga Tech)
+    </li>
+    <li class="list-group-item" data-aos="fade-right" data-aos-delay="200">
+      CS 4400: Introduction to Databases (Georgia Tech)
+    </li>
+    <li class="list-group-item" data-aos="fade-right" data-aos-delay="200">
+      MATH 1564: Honors Linear Algebra w/ Abstract Vector Spaces (Georgia Tech)
+    </li>
+    <li class="list-group-item" data-aos="fade-right">
+      ISYE 2027: Probability & its Applications (Georgia Tech)
+    </li>
+    <li class="list-group-item" data-aos="fade-right" data-aos-delay="200">
+      ISYE 3030: Basic Statistical Methods (Georgia Tech)
+    </li>
+    <li class="list-group-item" data-aos="fade-right" data-aos-delay="200">
+      CS 1331: Introduction to Object Oriented Programming (Georgia Tech)
+    </li>
+    <li class="list-group-item" data-aos="fade-right" data-aos-delay="200">
+      MATH 2106: Foundations of Mathematical Proof (Georgia Tech)
+    </li>
+    <li class="list-group-item" data-aos="fade-right">
+      CS 1332: Data Structures & Algorithms (Georgia Tech)
+    </li>
+    <li class="list-group-item" data-aos="fade-right" data-aos-delay="100">
+      GTSF Quant Sector: Statistical Inference for Quantitative Finance (Georgia
+      Tech)
+    </li>
+  </ul>
+</section>
+
+<hr />
+
+<section class="my-5" id="projects">
+  <h2 class="text-center mb-4">Projects &amp; Outside Experience</h2>
+  <div class="row g-4">
+    <div class="col-md-4" data-aos="fade-up">
+      <div class="card h-100 shadow-sm experience-card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between flex-wrap mb-2">
+            <h5 class="mb-0">Loan Default Predictor Model</h5>
+            <span class="badge tech-badge">Atlanta, GA</span>
+          </div>
+          <p class="text-muted small">Developer August 2025 - Present</p>
+          <ul class="mb-3">
+            <li>
+              Achieved 84%+ accuracy in predicting loan defaults by engineering
+              an AI model using Random Forest, XGBoost, imbalanced
+              classification, and SHAP attribution, following SDLC and design
+              patterns.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="50">
+      <div class="card h-100 shadow-sm experience-card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between flex-wrap mb-2">
+            <h5 class="mb-0">Quantitative Trading Library</h5>
+            <span class="badge tech-badge">Atlanta, GA</span>
+          </div>
+          <p class="text-muted small">Developer January 2025 - Present</p>
+          <ul class="mb-3">
+            <li>
+              Enhanced quantitative simulations by implementing modular,
+              reusable components in a Python
+              trading library.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+      <div class="card h-100 shadow-sm experience-card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between flex-wrap mb-2">
+            <h5 class="mb-0">Hospital Database System</h5>
+            <span class="badge tech-badge">Atlanta, GA</span>
+          </div>
+          <p class="text-muted small">Developer August 2025 - Present</p>
+          <ul class="mb-3">
+            <li>
+              Legacy hospital systems lacked structured data operations; Built a fully normalized relational database for hospital workflows with views, procedures, and time-triggered operations to simulate real-world admin behavior.
+              REST APIs.
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr />
+
+<section class="my-5">
+  <h2 class="text-center mb-4">Featured Media</h2>
+  <div class="row justify-content-center">
+    <div class="col-md-6 mb-4 d-flex justify-content-center" data-aos="zoom-in">
+      <div
+        class="shadow-sm rounded overflow-hidden embed-media"
+        style="width: 476px; height: 476px; border: 1px solid #ccc"
+      >
+        <iframe
+          src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2FISyEGeorgiaTech%2Fvideos%2F1669082183701545%2F&show_text=false&width=476&t=0"
+          style="border: none; width: 100%; height: 100%"
+          scrolling="no"
+          frameborder="0"
+          allowfullscreen
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+        >
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const preview = document.getElementById('intro-preview');
+    const fullIntro = document.getElementById('fullIntro');
+
+    if (preview && fullIntro) {
+      fullIntro.addEventListener('show.bs.collapse', () => {
+        preview.classList.add('d-none');
+      });
+
+      fullIntro.addEventListener('hidden.bs.collapse', () => {
+        preview.classList.remove('d-none');
+      });
+    }
+  });
+</script>
 
 {% endblock %}

@@ -1,13 +1,161 @@
 {% extends 'base.html' %}
-{% block title %}Resume - Abba {% endblock %}
+{% block title %}Resume - Abba{% endblock %}
 {% load static %}
 
 {% block content %}
 <div class="text-center my-5">
-    <h2 class="mb-4">📄 Resume</h2>
-    <a href="{% url 'serve_resume' 'Abba_Resume.pdf' %}" class="btn btn-primary mt-3" download>Download PDF</a>
-
-
-
+    <h2 class="mb-3">Resume</h2>
+    <p class="text-muted">View highlights below or grab the PDF.</p>
+    <a href="{% url 'serve_resume' 'Abba_Resume.pdf' %}" class="btn btn-primary mt-2" download>Download PDF</a>
 </div>
+
+<div class="mb-4" data-aos="fade-up">
+    <object data="{% url 'serve_resume' 'Abba_Resume.pdf' %}" type="application/pdf" width="100%" height="720px">
+        <iframe src="{% url 'serve_resume' 'Abba_Resume.pdf' %}" width="100%" height="720px"></iframe>
+    </object>
+    <p class="small text-muted mt-2">If the embed does not load, use the download button above.</p>
+</div>
+
+<section class="my-5" data-aos="fade-up">
+    <h3>Summary</h3>
+    <p>I am a full-stack and quantitative engineer who builds reliable products end-to-endfrom Python/FastAPI and Django backends to data pipelines and analytics dashboards. I focus on clear communication, rapid iteration, and measurable outcomes.</p>
+</section>
+
+<section class="my-5" data-aos="fade-up">
+    <div class="d-flex justify-content-between align-items-center flex-wrap mb-3">
+        <h3 class="mb-0">Experience</h3>
+    </div>
+
+    <div class="row g-3">
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm experience-card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between flex-wrap mb-1">
+                        <h5 class="mb-0">DEI Committee Chair</h5>
+                        <span class="text-muted small">Jan 2025 - Present</span>
+                    </div>
+                    <p class="text-muted small mb-2">Georgia Institute of Technology  Atlanta, GA</p>
+                    <ul class="mb-3">
+                        <li>Digitized workflows with modular patterns to enable AI/GenAI analytics integration.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm experience-card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between flex-wrap mb-1">
+                        <h5 class="mb-0">Quantitative Analyst</h5>
+                        <span class="text-muted small">Jan 2025 - May 2025</span>
+                    </div>
+                    <p class="text-muted small mb-2">Georgia Institute of Technology  Atlanta, GA</p>
+                    <ul class="mb-3">
+                        <li>Improved ETF Sharpe by 20%+ via Python backtesting infra and factor research.</li>
+                        <li>3x simulation throughput using Jupyter + Bloomberg and CI/CD pipelines.</li>
+                        <li>Explored deep learning/GenAI for time-series prediction and anomaly detection.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm experience-card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between flex-wrap mb-1">
+                        <h5 class="mb-0">Software Engineering Intern</h5>
+                        <span class="text-muted small">Jun 2024 - Aug 2024</span>
+                    </div>
+                    <p class="text-muted small mb-2">Klynveld Peat Marwick Goerdeler  Mumbai, India</p>
+                    <ul class="mb-3">
+                        <li>Engineered Python microservices with CI/CD, reaching 95%+ doc retrieval accuracy across 1k+ files.</li>
+                        <li>Cut backend latency by 30% via performance tuning and cross-team debugging.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="my-5" data-aos="fade-up">
+    <h3 class="mb-3">Projects & Outside Experience</h3>
+    <div class="row g-3">
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm experience-card">
+                <div class="card-body">
+                    <h5 class="mb-1">Loan Default Predictor Model</h5>
+                    <p class="text-muted small">Atlanta, GA  Aug 2025 - Present</p>
+                    <ul class="mb-3">
+                        <li>84%+ accuracy using Random Forest/XGBoost; followed SDLC and design patterns.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm experience-card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between flex-wrap mb-1">
+                        <h5 class="mb-0">Full Stack Developer Intern</h5>
+                        <span class="text-muted small">Jan 2025 - Present</span>
+                    </div>
+                    <p class="text-muted small mb-2">Boxxer AI  Atlanta, GA</p>
+                    <ul class="mb-3">
+                        <li>Built FastAPI + React Native features with computer vision modules to cut packing time by 25%.</li>
+                        <li>Designed RESTful microservices and CI/CD pipelines for reliable releases.</li>
+                    </ul>
+                </div>
+                    Built a fully normalized relational database for hospital workflows with views, procedures, and time-triggered operations to simulate real-world admin behavior.
+                    REST APIs.
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm experience-card">
+                <div class="card-body">
+                    <h5 class="mb-1">Hospital Database System</h5>
+                    <p class="text-muted small">Atlanta, GA  Aug 2025 - Present</p>
+                    <ul class="mb-3">
+                        <li>
+                        Legacy hospital systems lacked structured data operations 
+                        </li>
+                        <li>
+                            Built a fully normalized relational database for hospital workflows with views, procedures, and time-triggered operations to simulate real-world admin behavior.
+                            REST APIs.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="my-5" data-aos="fade-up">
+    <h3>Skills</h3>
+    <div class="d-flex flex-wrap gap-2 mb-2">
+        <span class="badge tech-badge">Python</span>
+        <span class="badge tech-badge">Django</span>
+        <span class="badge tech-badge">FastAPI</span>
+        <span class="badge tech-badge">React Native</span>
+        <span class="badge tech-badge">PostgreSQL</span>
+        <span class="badge tech-badge">AWS</span>
+        <span class="badge tech-badge">CI/CD</span>
+        <span class="badge tech-badge">Microservices</span>
+        <span class="badge tech-badge">Computer Vision</span>
+        <span class="badge tech-badge">Quant Research</span>
+        <span class="badge tech-badge">NumPy/SciPy</span>
+        <span class="badge tech-badge">Bloomberg</span>
+        <span class="badge tech-badge">C++</span>
+        <span class="badge tech-badge">Java</span>
+        <span class="badge tech-badge">C#</span>
+    </div>
+</section>
+
+<section class="my-5" data-aos="fade-up">
+    <h3>Links</h3>
+    <ul class="list-unstyled mb-0">
+        <li><a href="mailto:abba.ndomo@gmail.com">abba.ndomo@gmail.com</a></li>
+        <li><a href="https://linkedin.com/in/AbbaNdomo" target="_blank" rel="noopener">linkedin.com/in/AbbaNdomo</a></li>
+        <li><a href="https://github.com/andomo3" target="_blank" rel="noopener">github.com/andomo3</a></li>
+    </ul>
+</section>
 {% endblock %}

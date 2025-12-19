@@ -1,7 +1,14 @@
+:root {
+    --accent: #8b6f47;
+    --accent-dark: #755a35;
+    --accent-soft: #f0e3d3;
+    --teal: #3b6f6d;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
 body {
-    background: linear-gradient(to right, #f5f0e6, #dbc6b0); /* light beige to brown tint */
+    background: linear-gradient(to right, #f5f0e6, #dbc6b0);
     font-family: 'Montserrat', sans-serif;
     color: #4a3c2b;
 }
@@ -17,15 +24,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar, .btn, .btn-primary {
-    background-color: #8b6f47;
-    border-color: #8b6f47;
+    background-color: var(--accent);
+    border-color: var(--accent);
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
 }
 
 .btn-primary:hover {
-    background-color: #755a35;
-    border-color: #755a35;
+    background-color: var(--accent-dark);
+    border-color: var(--accent-dark);
 }
 
 a {
@@ -42,15 +49,20 @@ a:hover {
     border: none;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     font-family: 'Montserrat', sans-serif;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover.project-hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 footer {
-    background-color: #f0e3d3;
+    background-color: var(--accent-soft);
     color: #4a3c2b;
     font-family: 'Montserrat', sans-serif;
 }
 
-/* Markdown styling */
 .markdown-content {
     font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
@@ -80,7 +92,6 @@ footer {
     font-family: monospace;
 }
 
-/* Visual elements */
 .rounded-circle:hover {
     transform: scale(1.05);
     box-shadow: 0 0 20px rgba(139, 111, 71, 0.2);
@@ -93,11 +104,11 @@ footer {
 }
 
 .transition-scale:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 .expanded-headshot {
-    max-width: 450 !important;
+    max-width: 450px !important;
     transition: all 0.4s ease;
 }
 
@@ -134,8 +145,6 @@ footer {
     color: #fff !important;
 }
 
-/* Add gentle glow on hover and idle pulse */
-/* Add gentle glow on hover and idle pulse */
 .interactive-hero {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     animation: idlePulse 4s infinite;
@@ -166,7 +175,7 @@ footer {
     background-clip: text;
     -webkit-background-clip: text;
     animation: shimmer 5s linear infinite;
-    font-style:oblique;
+    font-style: oblique;
     font-weight: bold;
 }
 
@@ -174,7 +183,6 @@ footer {
     0% { background-position: 0% center; }
     100% { background-position: 200% center; }
 }
-
 
 .contact-info a {
     color: #7c4a1d;
@@ -186,7 +194,6 @@ footer {
     color: #a25f2b;
     text-decoration: underline;
 }
-
 
 .navbar-nav .nav-link {
     padding-left: 1rem;
@@ -209,4 +216,82 @@ footer {
   color: #fff;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 6px;
+}
+
+.status-badge {
+    background: var(--teal);
+    color: #fff;
+    border-radius: 999px;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.9rem;
+    border: 1px solid transparent;
+}
+
+.status-badge.soft {
+    background: rgba(59, 111, 109, 0.12);
+    color: #2f504f;
+    border-color: rgba(59, 111, 109, 0.35);
+}
+
+.tech-badge {
+    background: rgba(139, 111, 71, 0.12);
+    color: #5a452d;
+    border-radius: 999px;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.85rem;
+    border: 1px solid rgba(139, 111, 71, 0.3);
+}
+
+.timeline {
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, rgba(139, 111, 71, 0.4), rgba(59, 111, 109, 0.4));
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -2px;
+    top: 12px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid var(--accent);
+    box-shadow: 0 0 0 4px rgba(139, 111, 71, 0.2);
+}
+
+.experience-card {
+    border-left: 4px solid var(--accent);
+}
+
+.embed-slot {
+    border: 1px dashed rgba(59, 111, 109, 0.5);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    background: rgba(59, 111, 109, 0.04);
+    color: #2f504f;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+ul {
+    padding-left: 1.2rem;
+}
+
+li {
+    margin-bottom: 0.4rem;
 }

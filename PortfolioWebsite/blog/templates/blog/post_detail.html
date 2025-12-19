@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}{{ post.title }} - MyPortfolio{% endblock %}
+{% block title %}{{ post.title }} - Abba Ndomo{% endblock %}
 
 {% block content %}
 <article class="markdown-content">
@@ -14,5 +14,5 @@
     {{ post.render_markdown|safe }}
 </article>
 
-<a href="{% url 'blog:post_list' %}" class="btn btn-outline-secondary mt-4">← Back to Blog</a>
+<a href="{% url 'blog:post_list' %}" class="btn btn-outline-secondary mt-4">Back</a>
 {% endblock %}
