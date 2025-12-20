@@ -176,8 +176,10 @@ small,
 }
 
 .navbar-premium .navbar-brand {
-  font-weight: 700;
-  color: var(--text);
+  color: var(--muted);
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
 }
 
 .navbar-premium .nav-link {
