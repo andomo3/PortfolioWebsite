@@ -2,35 +2,12 @@
 <div class="{{ col_class }}">
   <a class="project-card-link" href="/p/projects/{{ project.title|slugify }}/">
     <div class="card h-100 shadow-sm project-card">
+      {% if project.image %}
+        <img src="{{ project.image.url }}" class="card-img-top project-card-media" alt="{{ project.title }}">
+      {% else %}
+        <div class="project-card-media-placeholder"></div>
+      {% endif %}
       {% with preview=project_previews|dict_get:project.id %}
-        {% if preview %}
-          {% if preview.embed_url %}
-            <div class="project-card-media-placeholder"></div>
-          {% elif preview.media_asset_id %}
-            {% with asset=media_asset_map|dict_get:preview.media_asset_id %}
-              {% if asset %}
-                {% if preview.media_type == "video" %}
-                  <video class="card-img-top project-card-media" src="{{ asset.file.url }}" muted playsinline></video>
-                {% else %}
-                  <img src="{{ asset.file.url }}" class="card-img-top project-card-media" alt="{{ asset.alt_text|default:project.title }}">
-                {% endif %}
-              {% else %}
-                <div class="embed-slot">Add project media in Studio.</div>
-              {% endif %}
-            {% endwith %}
-          {% elif preview.media_url %}
-            {% if preview.media_type == "video" %}
-              <video class="card-img-top project-card-media" src="{{ preview.media_url }}" muted playsinline></video>
-            {% else %}
-              <img src="{{ preview.media_url }}" class="card-img-top project-card-media" alt="{{ preview.media_alt|default:project.title }}">
-            {% endif %}
-          {% else %}
-            <div class="embed-slot">Add project media in Studio.</div>
-          {% endif %}
-        {% else %}
-          <div class="embed-slot">Add project media in Studio.</div>
-        {% endif %}
-
         <div class="card-body">
           <h5 class="card-title fw-bold">
             {% if preview.title %}{{ preview.title }}{% else %}{{ project.title }}{% endif %}

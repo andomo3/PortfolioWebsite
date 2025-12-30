@@ -9,6 +9,8 @@
           src="{{ props.embedUrl }}"
           title="{{ props.mediaAlt|default:'Project embed' }}"
           loading="lazy"
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
+          allowfullscreen
         ></iframe>
       </div>
     {% elif asset or props.mediaUrl %}
@@ -17,10 +19,11 @@
           <video class="project-media" src="{{ asset.file.url }}" controls playsinline></video>
         {% else %}
           {% if "drive.google.com" in props.mediaUrl or "youtube.com" in props.mediaUrl or "youtu.be" in props.mediaUrl %}
-            <div class="project-media-embed">
+            <div class="project-media-embed" style="--embed-height: {{ props.embedHeight|default:'720' }}px;">
               <iframe
                 class="project-media-embed-frame"
                 src="{{ props.mediaUrl }}"
+                title="{{ props.mediaAlt|default:'Project embed' }}"
                 allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
                 allowfullscreen
               ></iframe>

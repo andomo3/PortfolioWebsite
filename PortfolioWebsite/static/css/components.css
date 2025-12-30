@@ -1,5 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
 
+/* Premium tokens (extends existing variables) */
+:root {
+  --font-heading: var(--font-sans);
+  --dur-1: 120ms;
+  --dur-2: 180ms;
+  --dur-3: 260ms;
+  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 /* Global resets and base elements */
 *,
 *::before,
@@ -20,15 +30,15 @@ body {
 
 /* Default anchor styling */
 a {
-  color: var(--accent);
+  color: var(--link, var(--text));
   text-decoration: none;
   transition: color var(--duration-base) var(--ease-smooth);
 }
 
 a:hover,
 a:focus-visible {
-  color: var(--accent-strong);
-  text-decoration: underline;
+  color: var(--link-hover, var(--text));
+  text-decoration: none;
 }
 
 /* Visible focus ring for keyboard users */
@@ -36,6 +46,15 @@ a:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Base image treatment */
@@ -65,12 +84,12 @@ main {
 
 /* Section vertical rhythm */
 .section-block {
-  padding: var(--space-96) 0;
+  padding: clamp(80px, 10vh, 140px) 0;
 }
 
 @media (max-width: 768px) {
   .section-block {
-    padding: var(--space-64) 0;
+    padding: clamp(56px, 8vh, 96px) 0;
   }
 }
 
@@ -82,7 +101,7 @@ h4,
 h5,
 h6 {
   color: var(--text);
-  font-family: var(--font-sans);
+  font-family: var(--font-heading);
   font-weight: 700;
   margin: 0 0 var(--space-16);
 }
@@ -90,11 +109,14 @@ h6 {
 h1 {
   font-size: var(--fs-h1);
   line-height: var(--lh-h1);
+  letter-spacing: -0.02em;
 }
 
 h2 {
   font-size: var(--fs-h2);
   line-height: var(--lh-h2);
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 h3 {
@@ -128,36 +150,45 @@ small,
   align-items: center;
   gap: 8px;
   border: 1px solid transparent;
-  transition: all var(--duration-base) var(--ease-smooth);
+  transition: transform var(--dur-2) var(--ease-out),
+    box-shadow var(--dur-2) var(--ease-out),
+    background-color var(--dur-2) var(--ease-out),
+    border-color var(--dur-2) var(--ease-out),
+    color var(--dur-2) var(--ease-out);
   text-decoration: none !important;
 }
 
 .btn-primary {
-  background: var(--accent);
-  color: #fff !important;
+  background: var(--text);
+  color: #000 !important;
   box-shadow: var(--shadow-soft);
-  border-color: var(--accent);
+  border-color: var(--text);
 }
 
 .btn-primary:hover,
 .btn-primary:focus-visible {
-  background: var(--accent-strong);
-  border-color: var(--accent-strong);
+  background: #000;
+  border-color: #000;
   box-shadow: var(--shadow-hover);
   transform: translateY(-1px);
 }
 
+.btn:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-soft);
+}
+
 .btn-secondary {
-  background: var(--surface);
-  color: var(--text) !important;
+  background: #000;
+  color: #000;
   border-color: var(--border);
   box-shadow: none;
 }
 
 .btn-secondary:hover,
 .btn-secondary:focus-visible {
-  border-color: var(--accent);
-  color: var(--accent) !important;
+  border-color: var(--text);
+  color: var(--text) !important;
   transform: translateY(-1px);
 }
 
@@ -171,6 +202,31 @@ small,
 .btn-ghost:focus-visible {
   color: var(--accent);
   background: var(--accent-soft);
+}
+
+/* Animated underline utility */
+.link-underline {
+  position: relative;
+  text-decoration: none !important;
+}
+
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-2) var(--ease-out);
+  opacity: 0.6;
+}
+
+.link-underline:hover::after,
+.link-underline:focus-visible::after {
+  transform: scaleX(1);
 }
 
 /* Navbar container and nav links */
@@ -189,6 +245,8 @@ small,
   font-weight: 600;
   padding: 8px 12px;
   border-radius: var(--radius-md);
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 .navbar-premium .nav-link {
