@@ -1,0 +1,25 @@
+{% if block.type == "hero" %}
+  {% include "builder/blocks/hero.html" with props=block.props %}
+{% elif block.type == "richText" %}
+  {% include "builder/blocks/rich_text.html" with props=block.props %}
+{% elif block.type == "projectGrid" %}
+  {% include "builder/blocks/project_grid.html" with props=block.props featured_projects=featured_projects all_projects=all_projects %}
+{% elif block.type == "researchList" %}
+  {% include "builder/blocks/research_list.html" with props=block.props posts=posts %}
+{% elif block.type == "testimonialsGrid" %}
+  {% include "builder/blocks/testimonials_grid.html" with props=block.props testimonials=testimonials %}
+{% elif block.type == "resumeEmbed" %}
+  {% include "builder/blocks/resume_embed.html" with props=block.props resume_url=resume_url %}
+{% elif block.type == "pdfEmbed" %}
+  {% include "builder/blocks/pdf_embed.html" with props=block.props %}
+{% elif block.type == "projectTitle" %}
+  {% include "builder/blocks/project_title.html" with props=block.props %}
+{% elif block.type == "projectBody" %}
+  {% include "builder/blocks/project_body.html" with props=block.props %}
+{% elif block.type == "projectMedia" %}
+  {% include "builder/blocks/project_media.html" with props=block.props media_asset_map=media_asset_map %}
+{% else %}
+  <div class="alert alert-warning">
+    Unknown block type: {{ block.type }}
+  </div>
+{% endif %}

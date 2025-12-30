@@ -1,0 +1,44 @@
+{% load builder_extras %}
+<section class="py-3">
+  {% with media_asset_id=props|dict_get:"mediaAssetId" %}
+  {% with asset=media_asset_map|dict_get:media_asset_id %}
+    {% if props.embedUrl %}
+      <div class="project-media-embed" style="--embed-height: {{ props.embedHeight|default:'720' }}px;">
+        <iframe
+          class="project-media-embed-frame"
+          src="{{ props.embedUrl }}"
+          title="{{ props.mediaAlt|default:'Project embed' }}"
+          loading="lazy"
+        ></iframe>
+      </div>
+    {% elif asset or props.mediaUrl %}
+      {% if props.mediaType == "video" %}
+        {% if asset %}
+          <video class="project-media" src="{{ asset.file.url }}" controls playsinline></video>
+        {% else %}
+          {% if "drive.google.com" in props.mediaUrl or "youtube.com" in props.mediaUrl or "youtu.be" in props.mediaUrl %}
+            <div class="project-media-embed">
+              <iframe
+                class="project-media-embed-frame"
+                src="{{ props.mediaUrl }}"
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+          {% else %}
+            <video class="project-media" src="{{ props.mediaUrl }}" controls playsinline></video>
+          {% endif %}
+        {% endif %}
+      {% else %}
+        {% if asset %}
+          <img class="project-media" src="{{ asset.file.url }}" alt="{{ asset.alt_text|default:'Project media' }}">
+        {% else %}
+          <img class="project-media" src="{{ props.mediaUrl }}" alt="{{ props.mediaAlt|default:'Project media' }}">
+        {% endif %}
+      {% endif %}
+    {% else %}
+      <div class="embed-slot">Add a project media URL or asset.</div>
+    {% endif %}
+  {% endwith %}
+  {% endwith %}
+</section>

@@ -1,0 +1,24 @@
+<section class="py-5">
+  <h2 class="builder-block-heading mb-3">{{ props.heading|default:"Resume" }}</h2>
+  <p class="text-muted">View highlights below or grab the PDF.</p>
+  {% if props.resumeUrl %}
+    <a href="{{ props.resumeUrl }}" class="btn btn-primary mt-2" download>Download PDF</a>
+  {% elif resume_url %}
+    <a href="{{ resume_url }}" class="btn btn-primary mt-2" download>Download PDF</a>
+  {% endif %}
+
+  {% if props.resumeUrl or resume_url %}
+    <div class="mt-4">
+      {% if props.resumeUrl %}
+        <object data="{{ props.resumeUrl }}" type="application/pdf" width="100%" height="720px">
+          <iframe src="{{ props.resumeUrl }}" width="100%" height="720px"></iframe>
+        </object>
+      {% else %}
+        <object data="{{ resume_url }}" type="application/pdf" width="100%" height="720px">
+          <iframe src="{{ resume_url }}" width="100%" height="720px"></iframe>
+        </object>
+      {% endif %}
+      <p class="small text-muted mt-2">If the embed does not load, use the download button above.</p>
+    </div>
+  {% endif %}
+</section>

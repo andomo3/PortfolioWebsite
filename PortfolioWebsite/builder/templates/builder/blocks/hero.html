@@ -1,0 +1,70 @@
+{% load builder_extras %}
+<section class="py-5 hero-layout">
+  <div class="hero-copy">
+    <p class="text-uppercase text-muted small mb-2">{{ props.kicker }}</p>
+    <h1 class="display-5 fw-bold">{{ props.title }}</h1>
+    {% with body=props.body|default:props.subtitle %}
+      {% if body %}
+        <p class="lead text-muted builder-block-body">{{ body }}</p>
+      {% endif %}
+    {% endwith %}
+
+    {% if props.pills %}
+      <div class="d-flex flex-wrap gap-2 mt-3">
+        {% for pill in props.pills %}
+          <span class="badge rounded-pill text-bg-light border">{{ pill }}</span>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <div class="d-flex gap-2 flex-wrap mt-4">
+      {% if props.ctaPrimary %}
+        <a class="btn btn-primary" href="{{ props.ctaPrimary.href }}">{{ props.ctaPrimary.label }}</a>
+      {% endif %}
+      {% if props.ctaSecondary %}
+        <a class="btn btn-outline-secondary" href="{{ props.ctaSecondary.href }}">{{ props.ctaSecondary.label }}</a>
+      {% endif %}
+    </div>
+  </div>
+
+  {% with media_asset_id=props|dict_get:"mediaAssetId" %}
+  {% with asset=media_asset_map|dict_get:media_asset_id %}
+    {% if asset or props.mediaUrl %}
+      <div class="hero-media-card">
+        {% if props.mediaLink %}
+          <a href="{{ props.mediaLink }}" class="hero-media-link">
+        {% endif %}
+
+        {% if props.mediaType == "video" %}
+          {% if asset %}
+            <video class="hero-media" src="{{ asset.file.url }}" controls playsinline></video>
+          {% else %}
+            {% if "drive.google.com" in props.mediaUrl or "youtube.com" in props.mediaUrl or "youtu.be" in props.mediaUrl %}
+              <div class="hero-media-embed">
+                <iframe
+                  class="hero-media-embed-frame"
+                  src="{{ props.mediaUrl }}"
+                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            {% else %}
+              <video class="hero-media" src="{{ props.mediaUrl }}" controls playsinline></video>
+            {% endif %}
+          {% endif %}
+        {% else %}
+          {% if asset %}
+            <img class="hero-media" src="{{ asset.file.url }}" alt="{{ asset.alt_text|default:'Hero media' }}">
+          {% else %}
+            <img class="hero-media" src="{{ props.mediaUrl }}" alt="{{ props.mediaAlt|default:'Hero media' }}">
+          {% endif %}
+        {% endif %}
+
+        {% if props.mediaLink %}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+  {% endwith %}
+  {% endwith %}
+</section>

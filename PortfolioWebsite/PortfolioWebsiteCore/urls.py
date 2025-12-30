@@ -16,22 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import RedirectView
 from django.conf.urls.static import static
 from django.conf import settings
 from .serve_media import serve_resume
-from .serve_media import serve_blog_image
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),  # root path
-    path('projects/', include('projects.urls')),
-    path('blog/', include('blog.urls')),
-    path('testimonials/', include('testimonials.urls')),
-    path('resume/', include('resume.urls')),
-    path('contact/', include('contact.urls')),
+    path('', include('builder.urls')),
+    path('projects/', RedirectView.as_view(url='/p/projects/', permanent=False)),
+    path('resume/', RedirectView.as_view(url='/p/resume/', permanent=False)),
+    path('contact/', RedirectView.as_view(url='/p/contact/', permanent=False)),
     path('media/resume/<str:filename>', serve_resume, name='serve_resume'),
-    path('media/blog_images/<str:filename>', serve_blog_image, name='serve_blog_image'),
 ]
 
 

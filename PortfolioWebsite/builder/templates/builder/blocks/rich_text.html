@@ -1,0 +1,11 @@
+<section class="py-4 builder-rich-text">
+  {% if props.kicker %}
+    <p class="text-uppercase text-muted small mb-2 builder-block-kicker">{{ props.kicker }}</p>
+  {% endif %}
+  {% with title=props.title|default:props.heading %}
+    {% if title %}
+      <h2 class="display-5 fw-bold builder-block-title">{{ title }}</h2>
+    {% endif %}
+  {% endwith %}
+  <div class="builder-rich-text-body builder-block-body text-muted">{{ props.body|linebreaksbr }}</div>
+</section>

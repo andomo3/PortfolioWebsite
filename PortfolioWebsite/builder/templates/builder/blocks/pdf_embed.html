@@ -1,0 +1,15 @@
+<section class="py-5">
+  <h2 class="builder-block-heading mb-3">{{ props.heading|default:"Research PDF" }}</h2>
+
+  {% if props.embedUrl %}
+    <iframe
+      src="{{ props.embedUrl }}"
+      title="{{ props.heading|default:'Research PDF' }}"
+      width="100%"
+      height="{{ props.height|default:'720' }}"
+      loading="lazy"
+    ></iframe>
+  {% else %}
+    <p class="text-muted">Add a PDF embed URL in the Studio inspector.</p>
+  {% endif %}
+</section>
