@@ -18,6 +18,16 @@
   {% include "builder/blocks/project_body.html" with props=block.props %}
 {% elif block.type == "projectMedia" %}
   {% include "builder/blocks/project_media.html" with props=block.props media_asset_map=media_asset_map %}
+{% elif block.type == "internshipList" %}
+  {% include "builder/blocks/internship_list.html" with props=block.props %}
+{% elif block.type == "internshipTimeline" %}
+  {% include "builder/blocks/internship_timeline.html" with props=block.props %}
+{% elif block.type == "internshipTitle" %}
+  {% include "builder/blocks/internship_title.html" with props=block.props %}
+{% elif block.type == "internshipMeta" %}
+  {% include "builder/blocks/internship_meta.html" with props=block.props %}
+{% elif block.type == "internshipBody" %}
+  {% include "builder/blocks/internship_body.html" with props=block.props %}
 {% elif block.type == "contactBlock" %}
   {% include "builder/blocks/contact_block.html" with props=block.props %}
 {% else %}

@@ -1,0 +1,63 @@
+{% load builder_extras %}
+<section class="section-block">
+  <div class="page-shell">
+    {% with heading=props|dict_get:"heading" %}
+    {% with fallback_title=props|dict_get:"title" %}
+      {% if heading or fallback_title %}
+        <h2 class="display-5 fw-bold">{{ heading|default:fallback_title }}</h2>
+      {% endif %}
+    {% endwith %}
+    {% endwith %}
+    {% with subtitle=props|dict_get:"subtitle" %}
+      {% if subtitle %}
+        <p class="text-muted">{{ subtitle }}</p>
+      {% endif %}
+    {% endwith %}
+
+    {% with items=props|dict_get:"items" %}
+    <div class="row g-4 mt-1">
+      {% for item in items|as_list %}
+        <div class="col-md-6 col-lg-4">
+          {% with item_url=item|dict_get:"url" %}
+          {% with item_slug=item|dict_get:"slug" %}
+            <a class="project-card-link" href="{% if item_url %}{{ item_url }}{% elif item_slug %}/p/internships/{{ item_slug }}/{% else %}#{% endif %}">
+              <div class="card-premium h-100">
+                <div class="card-body">
+                  {% with company=item|dict_get:"company" %}
+                    {% if company %}
+                      <div class="text-uppercase text-muted small mb-2">{{ company }}</div>
+                    {% endif %}
+                  {% endwith %}
+                  <h3 class="card-title fw-bold">{{ item|dict_get:"title" }}</h3>
+                  {% with item_subtitle=item|dict_get:"subtitle" %}
+                    {% if item_subtitle %}
+                      <p class="card-text text-muted">{{ item_subtitle }}</p>
+                    {% endif %}
+                  {% endwith %}
+                  {% with item_duration=item|dict_get:"duration" %}
+                    {% if item_duration %}
+                      <p class="text-muted small mb-2">{{ item_duration }}</p>
+                    {% endif %}
+                  {% endwith %}
+                  {% with tech_stack=item|dict_get:"techStack" %}
+                    {% if tech_stack %}
+                      <div class="d-flex flex-wrap gap-2 mt-3">
+                        {% for tech in tech_stack|as_list %}
+                          <span class="tech-badge">{{ tech }}</span>
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+                  {% endwith %}
+                </div>
+              </div>
+            </a>
+          {% endwith %}
+          {% endwith %}
+        </div>
+      {% empty %}
+        <p class="text-muted">Add internships to this block.</p>
+      {% endfor %}
+    </div>
+    {% endwith %}
+  </div>
+</section>

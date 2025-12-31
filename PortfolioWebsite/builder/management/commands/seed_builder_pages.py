@@ -27,6 +27,90 @@ class Command(BaseCommand):
             "projects": self.projects_layout(),
             "resume": self.resume_layout(),
             "contact": self.contact_layout(),
+            "about": self.about_layout(),
+            "internships": self.internships_layout(),
+            "internship-kpmg-software-engineering-intern": self.internship_detail_layout(
+                title="Software Engineering Intern",
+                company="KPMG",
+                subtitle="Built backend services to improve enterprise document retrieval.",
+                role="Software Engineering Intern",
+                team="Enterprise Platforms",
+                duration="Jun 2024 - Aug 2024",
+                overview=(
+                    "Supported a document intelligence platform by shipping Python services and internal tooling. "
+                    "Focused on improving accuracy, reliability, and response times for internal users."
+                ),
+                what_built=(
+                    "Built Python microservices for document ingestion and retrieval.\n"
+                    "Improved ingestion monitoring with structured logging and alerts.\n"
+                    "Partnered with QA to validate accuracy improvements."
+                ),
+                impact=(
+                    "Raised retrieval accuracy to 95%+ across 1,000+ files.\n"
+                    "Reduced manual review time by 40% for internal teams."
+                ),
+            ),
+            "internship-georgia-tech-quantitative-analyst-mentee": self.internship_detail_layout(
+                title="Quantitative Analyst Mentee",
+                company="Georgia Tech",
+                subtitle="Built an automated equity screener and backtesting workflow.",
+                role="Analyst Mentee",
+                team="MentIE Program",
+                duration="Jan 2025 - May 2025",
+                overview=(
+                    "Worked with mentors to research factors and build a reusable equity screening pipeline "
+                    "for student-managed portfolios."
+                ),
+                what_built=(
+                    "Automated equity screening in Python with pandas and yfinance.\n"
+                    "Created reusable factor backtests with clear reporting.\n"
+                    "Documented workflows for future cohorts."
+                ),
+                impact=(
+                    "Delivered a screening tool adopted by the student fund.\n"
+                    "Enabled faster weekly factor reviews for the team."
+                ),
+            ),
+            "internship-georgia-tech-dei-committee-chair": self.internship_detail_layout(
+                title="DEI Committee Chair",
+                company="Georgia Tech",
+                subtitle="Led programming and coordination for student DEI initiatives.",
+                role="Committee Chair",
+                team="ISyE DEI Committee",
+                duration="Jan 2025 - Present",
+                overview=(
+                    "Led event programming and cross-team coordination to improve student engagement and access "
+                    "to resources across the ISyE community."
+                ),
+                what_built=(
+                    "Designed event architecture and speaker series programming.\n"
+                    "Coordinated cross-functional volunteers and logistics.\n"
+                    "Built feedback loops to improve event attendance."
+                ),
+                impact=(
+                    "Increased event participation and retention semester-over-semester.\n"
+                    "Improved clarity of resource sharing across cohorts."
+                ),
+            ),
+            "internship-georgia-tech-housing-office-assistant": self.internship_detail_layout(
+                title="Housing Office Assistant",
+                company="Georgia Tech",
+                subtitle="Supported residents and streamlined housing operations.",
+                role="Office Assistant",
+                team="Housing Office",
+                duration="Aug 2024 - Present",
+                overview=(
+                    "Supported daily operations, resident communications, and event logistics for housing services."
+                ),
+                what_built=(
+                    "Built resident support workflows and FAQs for faster issue resolution.\n"
+                    "Managed inventory and event logistics for community programming."
+                ),
+                impact=(
+                    "Reduced response time for resident inquiries.\n"
+                    "Improved consistency of housing communications."
+                ),
+            ),
         }
 
         for slug, layout in pages.items():
@@ -134,6 +218,177 @@ class Command(BaseCommand):
             "blocks": [
                 make_block("richText", {"heading": "Projects", "body": "A selection of recent work."}),
                 make_block("projectGrid", {"heading": "Projects", "source": "all", "columns": 3}),
+            ]
+        }
+
+
+    def about_layout(self):
+        timeline_items = [
+            {
+                "title": "Software Engineering Intern",
+                "company": "KPMG",
+                "duration": "Jun 2024 - Aug 2024",
+                "subtitle": "Built backend services to improve enterprise document retrieval.",
+                "highlights": [
+                    "Raised retrieval accuracy to 95%+ across 1,000+ files.",
+                    "Shipped Python services and QA tooling for faster delivery.",
+                ],
+                "techStack": ["Python", "FastAPI", "PostgreSQL"],
+                "slug": "kpmg-software-engineering-intern",
+            },
+            {
+                "title": "Quantitative Analyst Mentee",
+                "company": "Georgia Tech",
+                "duration": "Jan 2025 - May 2025",
+                "subtitle": "Built an automated equity screener and backtesting workflow.",
+                "highlights": [
+                    "Automated equity screening with pandas and yfinance.",
+                    "Delivered reusable factor reports for weekly reviews.",
+                ],
+                "techStack": ["Python", "Pandas", "yfinance"],
+                "slug": "georgia-tech-quantitative-analyst-mentee",
+            },
+            {
+                "title": "DEI Committee Chair",
+                "company": "Georgia Tech",
+                "duration": "Jan 2025 - Present",
+                "subtitle": "Led programming and coordination for student DEI initiatives.",
+                "highlights": [
+                    "Improved participation through consistent event cadence.",
+                    "Built feedback loops to refine programming each term.",
+                ],
+                "techStack": ["Program Management", "Community"],
+                "slug": "georgia-tech-dei-committee-chair",
+            },
+            {
+                "title": "Housing Office Assistant",
+                "company": "Georgia Tech",
+                "duration": "Aug 2024 - Present",
+                "subtitle": "Supported residents and streamlined housing operations.",
+                "highlights": [
+                    "Streamlined resident communications and response workflows.",
+                    "Organized community programming logistics.",
+                ],
+                "techStack": ["Operations", "Support"],
+                "slug": "georgia-tech-housing-office-assistant",
+            },
+        ]
+
+        return {
+            "blocks": [
+                make_block(
+                    "hero",
+                    {
+                        "title": "About",
+                        "pills": ["Builder", "Quant-Oriented", "Community-Driven"],
+                        "ctaPrimary": {"label": "View Internships", "href": "/p/internships/"},
+                        "ctaSecondary": {"label": "View Projects", "href": "/p/projects/"},
+                        "mediaType": "image",
+                        "mediaUrl": "",
+                        "mediaAlt": "",
+                        "mediaLink": "",
+                        "mediaAssetId": None,
+                    },
+                ),
+                make_block(
+                    "internshipTimeline",
+                    {
+                        "heading": "Experience Timeline",
+                        "subtitle": "Most recent first.",
+                        "items": timeline_items,
+                    },
+                ),
+            ]
+        }
+
+    def internships_layout(self):
+        internship_items = [
+            {
+                "title": "Software Engineering Intern",
+                "company": "KPMG",
+                "subtitle": "Built backend services to improve enterprise document retrieval.",
+                "duration": "Jun 2024 - Aug 2024",
+                "techStack": ["Python", "FastAPI", "PostgreSQL"],
+                "slug": "kpmg-software-engineering-intern",
+            },
+            {
+                "title": "Quantitative Analyst Mentee",
+                "company": "Georgia Tech",
+                "subtitle": "Built an automated equity screener and backtesting workflow.",
+                "duration": "Jan 2025 - May 2025",
+                "techStack": ["Python", "Pandas", "yfinance"],
+                "slug": "georgia-tech-quantitative-analyst-mentee",
+            },
+            {
+                "title": "DEI Committee Chair",
+                "company": "Georgia Tech",
+                "subtitle": "Led programming and coordination for student DEI initiatives.",
+                "duration": "Jan 2025 - Present",
+                "techStack": ["Program Management", "Community"],
+                "slug": "georgia-tech-dei-committee-chair",
+            },
+            {
+                "title": "Housing Office Assistant",
+                "company": "Georgia Tech",
+                "subtitle": "Supported residents and streamlined housing operations.",
+                "duration": "Aug 2024 - Present",
+                "techStack": ["Operations", "Support"],
+                "slug": "georgia-tech-housing-office-assistant",
+            },
+        ]
+
+        return {
+            "blocks": [
+                make_block(
+                    "richText",
+                    {
+                        "kicker": "Internships",
+                        "title": "Internships",
+                        "body": "Roles and internships where I built systems, shipped features, and measured impact.",
+                    },
+                ),
+                make_block(
+                    "internshipList",
+                    {
+                        "heading": "Internships",
+                        "subtitle": "A selection of recent roles and learning experiences.",
+                        "items": internship_items,
+                    },
+                ),
+            ]
+        }
+
+    def internship_detail_layout(
+        self,
+        *,
+        title,
+        company,
+        subtitle,
+        role,
+        team,
+        duration,
+        overview,
+        what_built,
+        impact,
+    ):
+        return {
+            "blocks": [
+                make_block(
+                    "internshipTitle",
+                    {"title": f"{title} | {company}", "subtitle": subtitle},
+                ),
+                make_block(
+                    "internshipMeta",
+                    {"role": role, "team": team, "duration": duration},
+                ),
+                make_block(
+                    "internshipBody",
+                    {
+                        "overview": overview,
+                        "whatBuilt": what_built,
+                        "impact": impact,
+                    },
+                ),
             ]
         }
 

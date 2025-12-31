@@ -1,0 +1,39 @@
+﻿{% load builder_extras %}
+<section class="section-block">
+  <div class="page-shell">
+    {% if props.overview %}
+      <section class="card-premium mb-4">
+        <div class="card-body">
+          <h2 class="h4 fw-bold">Overview</h2>
+          <p class="text-muted">{{ props.overview|linebreaksbr }}</p>
+        </div>
+      </section>
+    {% endif %}
+
+    {% if props.whatBuilt %}
+      <section class="card-premium mb-4">
+        <div class="card-body">
+          <h2 class="h4 fw-bold">What I Built</h2>
+          <ul>
+            {% for item in props.whatBuilt|split_lines %}
+              <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </section>
+    {% endif %}
+
+    {% if props.impact %}
+      <section class="card-premium mb-4">
+        <div class="card-body">
+          <h2 class="h4 fw-bold">Impact</h2>
+          <ul>
+            {% for item in props.impact|split_lines %}
+              <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </section>
+    {% endif %}
+  </div>
+</section>

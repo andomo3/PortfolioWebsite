@@ -129,3 +129,28 @@ def project_public_page(request, slug):
         "media_asset_map": media_asset_map,
     }
     return render(request, "builder/public_page.html", context)
+
+
+def internship_public_page(request, slug):
+    page_slug = f"internship-{slug}"
+    page, _ = Page.objects.get_or_create(
+        slug=page_slug,
+        defaults={"title": slug.replace("-", " ").title()},
+    )
+    pv = page.versions.filter(is_published=True).order_by("-created_at").first()
+    layout = pv.layout_json if pv else {"blocks": []}
+    media_ids = []
+    for block in layout.get("blocks", []):
+        media_id = block.get("props", {}).get("mediaAssetId")
+        if media_id:
+            media_ids.append(media_id)
+    media_assets = MediaAsset.objects.filter(id__in=media_ids)
+    media_asset_map = {asset.id: asset for asset in media_assets}
+    context = {
+        "layout": layout,
+        "page": page,
+        "version": pv,
+        "media_asset_map": media_asset_map,
+    }
+    return render(request, "builder/public_page.html", context)
+

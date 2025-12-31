@@ -572,3 +572,25 @@
     transition-duration: 1ms !important;
   }
 }
+/* Internship metadata card */
+.internship-meta {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  padding: var(--space-24);
+}
+
+.internship-meta .meta-label {
+  font-size: var(--fs-small);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin-bottom: var(--space-8);
+}
+
+.internship-meta .meta-value {
+  font-weight: 600;
+  color: var(--text);
+}
+
