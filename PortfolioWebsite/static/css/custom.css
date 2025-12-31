@@ -368,14 +368,8 @@
   transform: scale(1.5);
 }
 
-.hero-balanced__title {
-  color: var(--text);
-  background: none;
-  -webkit-text-fill-color: var(--text);
-}
-
 /* Hero + rich text hover scale */
-.hero-balanced__title,
+.hero-balanced__copy h1,
 .hero-balanced__copy .status-badge,
 .hero-balanced__copy .btn,
 .builder-block-title,
@@ -385,12 +379,12 @@
   transform: scale(1);
 }
 
-.hero-balanced__title,
+.hero-balanced__copy h1,
 .builder-block-title {
   display: inline-block;
 }
 
-.hero-balanced__title:hover,
+.hero-balanced__copy h1:hover,
 .hero-balanced__copy .status-badge:hover,
 .hero-balanced__copy .btn:hover,
 .builder-block-title:hover,
