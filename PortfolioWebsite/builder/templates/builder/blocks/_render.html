@@ -18,6 +18,8 @@
   {% include "builder/blocks/project_body.html" with props=block.props %}
 {% elif block.type == "projectMedia" %}
   {% include "builder/blocks/project_media.html" with props=block.props media_asset_map=media_asset_map %}
+{% elif block.type == "contactBlock" %}
+  {% include "builder/blocks/contact_block.html" with props=block.props %}
 {% else %}
   <div class="alert alert-warning">
     Unknown block type: {{ block.type }}

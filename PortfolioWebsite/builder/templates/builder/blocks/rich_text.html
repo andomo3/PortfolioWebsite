@@ -7,5 +7,5 @@
       <h2 class="display-5 fw-bold builder-block-title">{{ title }}</h2>
     {% endif %}
   {% endwith %}
-  <div class="builder-rich-text-body builder-block-body text-muted">{{ props.body|linebreaksbr }}</div>
+  <div class="builder-rich-text-body builder-block-body text-muted">{{ props.body|urlize|linebreaksbr }}</div>
 </section>

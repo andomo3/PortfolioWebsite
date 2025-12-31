@@ -10,7 +10,7 @@
 .interactive-hero {
   /* background: var(--bg); */
   border-radius: var(--radius-lg);
-  padding: var(--space-24);
+  /* padding: var(--space-24); */
 }
 
 /* Hero headline gradient text */
@@ -99,10 +99,15 @@
 }
 
 .project-card-link:hover .project-card {
-  transform: translateY(-2px);
+  transform: scale(1.05);
   box-shadow: var(--shadow-hover);
   border-color: rgba(37, 99, 235, 0.18);
 }
+
+.project-card-link .project-card {
+  transition: transform 0.7s ease-in-out !important;
+}
+
 
 /* Project card media sizing */
 .project-card-media {
@@ -258,6 +263,32 @@
   color: var(--muted);
 }
 
+/* Contact block styling (dedicated block to avoid conflicts) */
+.contact-block {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-block__title {
+  font-size: 3rem;
+  margin-bottom: var(--space-16);
+  transition: transform 0.7s ease-in-out !important;
+  transform: scale(1);
+}
+
+.contact-block__body {
+  font-size: 20px;
+  line-height: 1.7;
+  transition: transform 0.7s ease-in-out !important;
+  transform: scale(1);
+}
+
+.contact-block__title:hover,
+.contact-block__body:hover {
+  transform: scale(1.05);
+}
+
 
 /* Builder block heading size */
 .builder-block-heading {
@@ -297,7 +328,7 @@
   max-width: 560px;
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 16px;
 }
 
 /* Balanced spacing for rich text blocks */
@@ -321,14 +352,39 @@
   border-radius: var(--radius-lg);
   /* box-shadow: var(--shadow-soft); */
   padding: var(--space-16);
+  overflow: visible;
 }
 
 .hero-balanced__image {
-  width: min(420px, 100%);
+  width: min(250px, 100%);
   aspect-ratio: 1 / 1.15;
   object-fit: cover;
   border-radius: var(--radius-lg);
   display: block;
+  transition: transform 0.7s ease-in-out !important;
+}
+
+.hero-balanced__image:hover {
+  transform: scale(1.5);
+}
+
+/* Hero + rich text hover scale */
+.hero-balanced__copy h1,
+.hero-balanced__copy .status-badge,
+.hero-balanced__copy .btn,
+.builder-block-title,
+.builder-rich-text-body {
+  transition: transform 0.7s ease-in-out !important;
+  transform-origin: left center;
+  transform: scale(1);
+}
+
+.hero-balanced__copy h1:hover,
+.hero-balanced__copy .status-badge:hover,
+.hero-balanced__copy .btn:hover,
+.builder-block-title:hover,
+.builder-rich-text-body:hover {
+  transform: scale(1.05);
 }
 
 .hero-balanced__embed {
@@ -366,6 +422,21 @@
   object-position: center;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border);
+}
+
+/* Project detail block hover scale */
+.project-title-block,
+.project-body-block,
+.project-media-block {
+  transition: transform 0.7s ease-in-out !important;
+  transform: scale(1);
+  transform-origin: center;
+}
+
+.project-title-block:hover,
+.project-body-block:hover,
+.project-media-block:hover {
+  transform: scale(1.05);
 }
 
 /* Project media embed container */
@@ -451,7 +522,10 @@
 /* Page transition fade */
 .page-transition {
   opacity: 0;
-  transition: opacity 160ms var(--ease-standard);
+  transition-property: opacity !important;
+  transition-duration: 900ms !important;
+  transition-timing-function: ease-in-out !important;
+  transition-delay: 0s !important;
 }
 
 .page-transition.is-loaded {
@@ -466,13 +540,30 @@
 .reveal-on-scroll {
   opacity: 0;
   transform: translateY(18px);
-  transition: opacity 260ms var(--ease-out),
-    transform 260ms var(--ease-out);
-  transition-delay: var(--reveal-delay, 0ms);
+  transition-property: opacity, transform;
+  transition-duration: 900ms;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
   will-change: opacity, transform;
 }
 
 .reveal-on-scroll.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Global transition rule per request */
+* {
+  transition: ease-in-out background 900ms !important;
+  transition-behavior: normal !important;
+  transition-duration: 900ms !important;
+  transition-timing-function: ease-in-out !important;
+  transition-delay: 0s !important;
+  transition-property: background !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 1ms !important;
+  }
 }

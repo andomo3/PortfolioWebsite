@@ -18,42 +18,37 @@ document.addEventListener("DOMContentLoaded", () => {
     body.classList.remove("is-leaving");
   });
 
-  const revealContainers = document.querySelectorAll("main, .section-block, .hero-balanced");
   const revealTargets = new Set();
 
-  revealContainers.forEach((container) => {
-    const items = container.querySelectorAll(
-      "h1, h2, h3, h4, p, li, img, video, .status-badge, .chip, .btn, .card, .project-card, .experience-card, .builder-rich-text, .builder-rich-text-body"
-    );
-    items.forEach((item, index) => {
-      item.classList.add("reveal-on-scroll");
-      item.style.setProperty("--reveal-delay", `${index * 60}ms`);
-      revealTargets.add(item);
-    });
+  document.querySelectorAll(".hero-balanced").forEach((el) => revealTargets.add(el));
+  document.querySelectorAll(".builder-rich-text").forEach((el) => revealTargets.add(el));
+
+  document.querySelectorAll(".project-card").forEach((card) => {
+    const row = card.closest(".row");
+    if (row) {
+      revealTargets.add(row);
+    }
   });
 
-  document.querySelectorAll(".card-premium, .project-card, .experience-card").forEach((card) => {
-    card.classList.add("reveal-on-scroll");
-    revealTargets.add(card);
+  document.querySelectorAll(".experience-card").forEach((card) => {
+    const section = card.closest(".section-block") || card;
+    revealTargets.add(section);
   });
 
-  document.querySelectorAll(".project-card").forEach((card, index) => {
-    card.style.setProperty("--reveal-delay", `${index * 65}ms`);
-  });
+  revealTargets.forEach((el) => el.classList.add("reveal-on-scroll"));
 
   if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const ratio = entry.intersectionRatio || 0;
-          if (ratio >= 0.3) {
+          if (entry.isIntersecting) {
             entry.target.classList.add("is-visible");
-          } else if (ratio <= 0.1) {
+          } else {
             entry.target.classList.remove("is-visible");
           }
         });
       },
-      { threshold: [0.1, 0.3], rootMargin: "0px 0px -5% 0px" }
+      { threshold: 0.1, rootMargin: "0px 0px -5% 0px" }
     );
 
     revealTargets.forEach((el) => observer.observe(el));

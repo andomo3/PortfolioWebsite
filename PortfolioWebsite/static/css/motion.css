@@ -3,9 +3,9 @@
   --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-  --dur-1: 120ms;
-  --dur-2: 180ms;
-  --dur-3: 260ms;
+  --dur-1: 620ms;
+  --dur-2: 680ms;
+  --dur-3: 760ms;
   --lift-1: translateY(-1px);
   --lift-2: translateY(-2px);
   --scale-1: scale(1.01);
@@ -17,9 +17,9 @@
 /* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
   * {
-    animation-duration: 1ms !important;
+    animation-duration: 1.5s !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 1ms !important;
+    transition-duration: 1.5s !important;
     scroll-behavior: auto !important;
   }
 }
@@ -72,12 +72,10 @@ button,
   position: absolute;
   inset: 0;
   transform: translateX(-120%) skewX(-12deg);
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.25),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.25),
+      transparent);
   transition: transform var(--dur-3) var(--ease-out);
 }
 
@@ -140,9 +138,11 @@ button,
   0% {
     background-position: 0% 0%, 100% 0%;
   }
+
   50% {
     background-position: 8% 2%, 92% 4%;
   }
+
   100% {
     background-position: 0% 0%, 100% 0%;
   }
@@ -173,7 +173,7 @@ button,
   transform: translateY(0);
 }
 
-.stagger > * {
+.stagger>* {
   transition-delay: var(--stagger-delay, 0ms);
 }
 
@@ -237,6 +237,7 @@ button,
     opacity: 0;
     transform: translateY(10px) scale(0.98);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);

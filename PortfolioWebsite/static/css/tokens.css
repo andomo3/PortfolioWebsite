@@ -59,7 +59,7 @@
   --container-pad-mobile: 20px;
 
   /* Motion */
-  --duration-fast: 180ms;
-  --duration-base: 200ms;
+  --duration-fast: 680ms;
+  --duration-base: 700ms;
   --ease-smooth: cubic-bezier(0.22, 0.61, 0.36, 1);
 }

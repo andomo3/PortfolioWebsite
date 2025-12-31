@@ -1,5 +1,5 @@
 {% load builder_extras %}
-<section class="py-3">
+<section class="py-3 project-media-block">
   {% with media_asset_id=props|dict_get:"mediaAssetId" %}
   {% with asset=media_asset_map|dict_get:media_asset_id %}
     {% if props.embedUrl %}

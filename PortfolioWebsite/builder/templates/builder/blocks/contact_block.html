@@ -1,0 +1,8 @@
+<section class="py-4 contact-block">
+  {% if props.title %}
+    <h2 class="display-5 fw-bold contact-block__title">{{ props.title }}</h2>
+  {% endif %}
+  {% if props.body %}
+    <div class="contact-block__body">{{ props.body|urlize|linebreaksbr }}</div>
+  {% endif %}
+</section>
