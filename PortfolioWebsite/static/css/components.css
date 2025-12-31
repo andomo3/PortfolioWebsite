@@ -67,7 +67,7 @@ img {
 /* Standard page container */
 .page-shell {
   max-width: var(--content-max);
-  padding: 0 var(--container-pad-desktop);
+  /* padding: 0 var(--container-pad-desktop); */
   margin: 0 auto;
 }
 
@@ -79,17 +79,18 @@ img {
 
 /* Main content top spacing */
 main {
-  padding-top: var(--space-32);
+  /* padding-top: var(--space-32); */
+  padding: var(--space32);
 }
 
 /* Section vertical rhythm */
 .section-block {
-  padding: clamp(80px, 10vh, 140px) 0;
+  padding: 15px 0;
 }
 
 @media (max-width: 768px) {
   .section-block {
-    padding: clamp(56px, 8vh, 96px) 0;
+    padding: 25px 0;
   }
 }
 

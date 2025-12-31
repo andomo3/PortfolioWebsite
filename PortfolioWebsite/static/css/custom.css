@@ -143,6 +143,13 @@
   transform: scale(1.02);
 }
 
+
+/* Card body should be flat (no border/shadow) */
+.card-body {
+  border: none;
+  box-shadow: none;
+}
+
 /* Tighter card padding variant */
 .card-compact .card-body {
   padding: var(--space-16);
@@ -356,7 +363,7 @@
 }
 
 .hero-balanced__image {
-  width: min(250px, 100%);
+  width: min(300px, 100%);
   aspect-ratio: 1 / 1.15;
   object-fit: cover;
   border-radius: var(--radius-lg);
@@ -572,12 +579,13 @@
     transition-duration: 1ms !important;
   }
 }
+
 /* Internship metadata card */
 .internship-meta {
   background: var(--surface);
-  border: 1px solid var(--border);
+  /* border: 1px solid var(--border); */
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-soft);
+  /* box-shadow: var(--shadow-soft); */
   padding: var(--space-24);
 }
 
@@ -594,3 +602,180 @@
   color: var(--text);
 }
 
+/* Internship body cards should be flat */
+.internship-body-block .card-premium {
+  border: none;
+  box-shadow: none;
+}
+
+/* Align internship body spacing with internship meta */
+.internship-body-block .card-premium {
+  margin-bottom: 0;
+}
+
+.internship-body-block .card-premium+.card-premium {
+  margin-top: var(--space-16);
+}
+
+
+
+/* Align internship body card padding and text width */
+.internship-body-block .card-body {
+  padding: var(--space-24);
+}
+
+.internship-body-block p,
+.internship-body-block .text-muted {
+  max-width: 100%;
+}
+
+
+
+/* Align internship title spacing and text width */
+.internship-title-block p,
+.internship-title-block .text-muted {
+  max-width: 100%;
+}
+
+.internship-title-block .mb-4 {
+  margin-bottom: 0;
+}
+
+
+
+/* Match internship title padding with meta/body cards */
+.internship-title-card {
+  padding: var(--space-24);
+}
+
+
+
+/* Remove top/bottom margins for internship elements */
+.internship-title-block,
+.internship-body-block {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.internship-title-card,
+.internship-body-block .card-premium,
+.internship-meta {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.internship-body-block .card-premium+.card-premium {
+  margin-top: 0;
+}
+
+/* Internship typography aligned with hero styles */
+.internship-title-block h1,
+.internship-list-block h2,
+.internship-timeline-block h2 {
+  font-family: var(--font-sans);
+  font-size: var(--fs-h1);
+  line-height: var(--lh-h1);
+  letter-spacing: -0.02em;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.internship-body-block h2,
+.internship-list-block h3,
+.internship-timeline-block h3 {
+  font-family: var(--font-sans);
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  color: var(--text);
+  font-weight: 700;
+}
+
+.internship-body-block .text-muted,
+.internship-body-block p {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--muted);
+}
+
+.internship-title-block .text-muted,
+.internship-list-block .card-text,
+.internship-timeline-block p.text-muted {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+
+
+/* Remove internship title card bottom margin */
+.internship-title-card.mb-4 {
+  margin-bottom: 0;
+}
+
+
+
+/* Normalize top/bottom padding to 20px for internship blocks */
+.internship-title-card,
+.internship-meta,
+.internship-body-block .card-body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+
+
+/* Internship body title hover behavior (independent from body text) */
+.internship-body-title {
+  display: inline-block;
+  transition: transform 0.7s ease-in-out !important;
+  transform: scale(1);
+  transform-origin: left center;
+}
+
+.internship-body-title:hover {
+  transform: scale(1.05);
+}
+
+
+
+/* Ensure internship body title uses scale only (no lift) */
+.internship-body-title {
+  transform: scale(1) !important;
+}
+
+.internship-body-title:hover {
+  transform: scale(1.05) !important;
+}
+
+
+
+/* Internship body cards scale on hover (no lift); text/title follow the card */
+.internship-body-block .card-premium {
+  transition: transform 0.7s ease-in-out !important;
+  transform: scale(1);
+  transform-origin: center;
+}
+
+.internship-body-block .card-premium:hover {
+  transform: scale(1.05) !important;
+}
+
+.internship-body-title,
+.internship-body-title:hover {
+  transform: none !important;
+}
+
+
+
+/* Internship title/meta cards scale on hover (no lift) */
+.internship-title-card,
+.internship-meta {
+  transition: transform 0.7s ease-in-out !important;
+  transform: scale(1);
+  transform-origin: center;
+}
+
+.internship-title-card:hover,
+.internship-meta:hover {
+  transform: scale(1.05) !important;
+}

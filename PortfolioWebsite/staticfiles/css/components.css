@@ -65,7 +65,11 @@ main {
 
 /* Section vertical rhythm */
 .section-block {
-  padding: var(--space-96) 0;
+  padding-top: clamp(25px, 10vh, 140px);
+  padding-right: 0px;
+  padding-bottom: clamp(25px, 10vh, 140px);
+  padding-left: 0px;
+
 }
 
 @media (max-width: 768px) {

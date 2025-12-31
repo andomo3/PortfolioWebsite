@@ -1,10 +1,10 @@
 ﻿{% load builder_extras %}
-<section class="section-block">
+<section class="section-block internship-body-block">
   <div class="page-shell">
     {% if props.overview %}
       <section class="card-premium mb-4">
         <div class="card-body">
-          <h2 class="h4 fw-bold">Overview</h2>
+          <h2 class="h4 fw-bold internship-body-title">Overview</h2>
           <p class="text-muted">{{ props.overview|linebreaksbr }}</p>
         </div>
       </section>
@@ -13,7 +13,7 @@
     {% if props.whatBuilt %}
       <section class="card-premium mb-4">
         <div class="card-body">
-          <h2 class="h4 fw-bold">What I Built</h2>
+          <h2 class="h4 fw-bold internship-body-title">What I Built</h2>
           <ul>
             {% for item in props.whatBuilt|split_lines %}
               <li>{{ item }}</li>
@@ -26,7 +26,7 @@
     {% if props.impact %}
       <section class="card-premium mb-4">
         <div class="card-body">
-          <h2 class="h4 fw-bold">Impact</h2>
+          <h2 class="h4 fw-bold internship-body-title">Impact</h2>
           <ul>
             {% for item in props.impact|split_lines %}
               <li>{{ item }}</li>
