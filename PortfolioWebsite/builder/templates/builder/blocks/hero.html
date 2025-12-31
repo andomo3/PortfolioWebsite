@@ -1,7 +1,7 @@
 {% load builder_extras %}
 <section class="py-5 interactive-hero hero-balanced">
   <div class="hero-balanced__copy">
-    <h1 class="display-5 fw-bold">{{ props.title }}</h1>
+    <h1 class="display-5 fw-bold"><span class="hero-balanced__title">{{ props.title }}</span></h1>
 
     {% if props.pills %}
       <div class="hero-balanced__chips mt-3">
