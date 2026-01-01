@@ -10,12 +10,42 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const body = document.body;
-  body.classList.add("is-loaded");
+  const themeToggle = document.getElementById("theme-toggle");
+  const storedTheme = localStorage.getItem("theme");
+
+  function applyTheme(theme) {
+    if (theme === "dark") {
+      body.classList.add("theme-dark");
+      themeToggle?.setAttribute("aria-pressed", "true");
+      themeToggle?.querySelector("span")?.replaceChildren(document.createTextNode("Light"));
+      themeToggle?.querySelector("i")?.classList.replace("bi-moon", "bi-sun");
+    } else {
+      body.classList.remove("theme-dark");
+      themeToggle?.setAttribute("aria-pressed", "false");
+      themeToggle?.querySelector("span")?.replaceChildren(document.createTextNode("Dark"));
+      themeToggle?.querySelector("i")?.classList.replace("bi-sun", "bi-moon");
+    }
+  }
+
+  if (storedTheme) {
+    applyTheme(storedTheme);
+  }
+
+  themeToggle?.addEventListener("click", () => {
+    const isDark = body.classList.contains("theme-dark");
+    const next = isDark ? "light" : "dark";
+    localStorage.setItem("theme", next);
+    applyTheme(next);
+  });
+
+  body.classList.remove("is-loaded");
   body.classList.remove("is-leaving");
+  requestAnimationFrame(() => body.classList.add("is-loaded"));
 
   window.addEventListener("pageshow", () => {
-    body.classList.add("is-loaded");
+    body.classList.remove("is-loaded");
     body.classList.remove("is-leaving");
+    requestAnimationFrame(() => body.classList.add("is-loaded"));
   });
 
   const revealTargets = new Set();
@@ -24,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".builder-rich-text").forEach((el) => revealTargets.add(el));
 
   document.querySelectorAll(".project-card").forEach((card) => {
+    revealTargets.add(card);
     const row = card.closest(".row");
     if (row) {
       revealTargets.add(row);

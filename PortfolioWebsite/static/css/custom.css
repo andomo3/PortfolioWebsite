@@ -99,7 +99,7 @@
 }
 
 .project-card-link:hover .project-card {
-  transform: scale(1.05);
+  transform: scale(1.0125);
   box-shadow: var(--shadow-hover);
   border-color: rgba(37, 99, 235, 0.18);
 }
@@ -293,7 +293,7 @@
 
 .contact-block__title:hover,
 .contact-block__body:hover {
-  transform: scale(1.05);
+  transform: scale(1.0125);
 }
 
 
@@ -363,16 +363,17 @@
 }
 
 .hero-balanced__image {
-  width: min(300px, 100%);
-  aspect-ratio: 1 / 1.15;
-  object-fit: cover;
+  width: 100%;
+  height: auto;
+  max-width: 420px;
+  object-fit: contain;
   border-radius: var(--radius-lg);
   display: block;
   transition: transform 0.7s ease-in-out !important;
 }
 
 .hero-balanced__image:hover {
-  transform: scale(1.5);
+  transform: scale(1.25);
 }
 
 /* Hero + rich text hover scale */
@@ -396,7 +397,7 @@
 .hero-balanced__copy .btn:hover,
 .builder-block-title:hover,
 .builder-rich-text-body:hover {
-  transform: scale(1.05);
+  transform: scale(1.0125);
 }
 
 .hero-balanced__embed {
@@ -448,7 +449,7 @@
 .project-title-block:hover,
 .project-body-block:hover,
 .project-media-block:hover {
-  transform: scale(1.05);
+  transform: scale(1.0125);
 }
 
 /* Project media embed container */
@@ -486,6 +487,8 @@
   flex-direction: column;
   gap: 8px;
   min-height: 170px;
+  border: none;
+  box-shadow: none;
 }
 
 .project-card .card-title {
@@ -733,7 +736,7 @@
 }
 
 .internship-body-title:hover {
-  transform: scale(1.05);
+  transform: scale(1.0125);
 }
 
 
@@ -744,7 +747,7 @@
 }
 
 .internship-body-title:hover {
-  transform: scale(1.05) !important;
+  transform: scale(1.0125) !important;
 }
 
 
@@ -757,7 +760,7 @@
 }
 
 .internship-body-block .card-premium:hover {
-  transform: scale(1.05) !important;
+  transform: scale(1.0125) !important;
 }
 
 .internship-body-title,
@@ -777,5 +780,236 @@
 
 .internship-title-card:hover,
 .internship-meta:hover {
-  transform: scale(1.05) !important;
+  transform: scale(1.0125) !important;
 }
+
+/* Main content container horizontal padding */
+main.container {
+  padding-left: 125px;
+  padding-right: 125px;
+}
+
+/* Hero body styling */
+.hero-balanced__body {
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--muted);
+  margin: 0;
+}
+
+
+
+/* Hero body text spans main container width */
+.hero-balanced__body {
+  max-width: 100%;
+}
+
+/* Prevent hero CTA flicker near viewport edges */
+.hero-balanced__copy .btn {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+
+
+/* Disable hover scaling for hero CTAs to prevent flicker */
+.hero-balanced__copy .btn,
+.hero-balanced__copy .btn:hover {
+  transform: none !important;
+}
+
+/* Internship list cards: outline only */
+.internship-list-block .card-premium {
+  box-shadow: none;
+}
+
+.internship-list-block .card-premium:hover {
+  box-shadow: none;
+}
+
+
+
+/* Project cards: outline only */
+.project-card-link .card-premium,
+.project-card-link .project-card,
+.project-hover {
+  box-shadow: none;
+}
+
+.project-card-link .card-premium:hover,
+.project-card-link .project-card:hover,
+.project-hover:hover {
+  box-shadow: none;
+}
+
+
+
+/* Dark mode theme (pitch black background) */
+body.theme-dark {
+  --bg: #000000;
+  --surface: #0b0b0b;
+  --surface-muted: #111111;
+  --text: #f5f5f5;
+  --muted: #b3b3b3;
+  --border: rgba(255, 255, 255, 0.14);
+  --link: #f5f5f5;
+  --link-hover: #ffffff;
+  background: #000000;
+  color: var(--text);
+}
+
+body.theme-dark .navbar-premium {
+  background: rgba(0, 0, 0, 0.9);
+  border-bottom-color: var(--border);
+}
+
+body.theme-dark .card,
+body.theme-dark .card-premium,
+body.theme-dark .experience-card,
+body.theme-dark .internship-meta {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+body.theme-dark .btn-secondary,
+body.theme-dark .btn-outline-secondary {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+
+body.theme-dark .theme-toggle-btn {
+  border-color: var(--border) !important;
+}
+
+
+
+/* Remove navbar outline */
+.navbar-premium {
+  border-bottom: none;
+}
+
+body.theme-dark .navbar-premium {
+  border-bottom: none;
+}
+
+
+/* Hero title hover scaling */
+.hero-balanced__title {
+  display: inline-block;
+  transition: transform 0.7s ease-in-out !important;
+  transform-origin: left center;
+  transform: scale(1);
+}
+
+.hero-balanced__title:hover {
+  transform: scale(1.0125);
+}
+
+
+/* Prevent about hero flicker */
+.hero-balanced__image,
+.hero-balanced__image:hover,
+.hero-balanced__copy .btn,
+.hero-balanced__copy .btn:hover {
+  transform: none !important;
+}
+
+
+/* Theme toggle matches nav links */
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  background: transparent;
+  border: none;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.theme-toggle-btn:hover,
+.theme-toggle-btn:focus-visible {
+  color: var(--text);
+  background: var(--accent-soft);
+  text-decoration: none;
+}
+
+
+/* Dark mode text fixes */
+body.theme-dark .hero-balanced__body,
+body.theme-dark .builder-rich-text-body,
+body.theme-dark .project-card .card-title,
+body.theme-dark .project-card .card-text,
+body.theme-dark .internship-list-block .card-title,
+body.theme-dark .internship-list-block .card-text,
+body.theme-dark .internship-list-block .text-muted {
+  color: var(--text) !important;
+}
+
+
+/* Dark mode hero title visibility */
+body.theme-dark .hero-balanced__copy h1 {
+  color: var(--text) !important;
+}
+
+body.theme-dark .hero-balanced__copy h1,
+body.theme-dark .hero-balanced__copy h1 * {
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+}
+
+
+
+/* Dark mode internship timeline text visibility */
+body.theme-dark .internship-timeline-block h3,
+body.theme-dark .internship-timeline-block p,
+body.theme-dark .internship-timeline-block li,
+body.theme-dark .internship-timeline-block .text-muted,
+body.theme-dark .internship-timeline-block .meta-label,
+body.theme-dark .internship-timeline-block .meta-value {
+  color: var(--text) !important;
+}
+
+
+
+/* Dark mode hero buttons visibility */
+body.theme-dark .hero-balanced__copy .btn-primary {
+  background: #ffffff !important;
+  border-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+body.theme-dark .hero-balanced__copy .btn-primary:hover,
+body.theme-dark .hero-balanced__copy .btn-primary:focus-visible {
+  background: #f5f5f5 !important;
+  border-color: #f5f5f5 !important;
+  color: #000000 !important;
+}
+
+
+
+/* Light mode hero title visibility */
+.hero-balanced__copy h1 {
+  color: var(--text) !important;
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+}
+
+
+
+/* Dark mode toggle visibility */
+body.theme-dark .theme-toggle-btn {
+  color: var(--text);
+}
+
+body.theme-dark .theme-toggle-btn:hover,
+body.theme-dark .theme-toggle-btn:focus-visible {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
+}
+

@@ -346,10 +346,11 @@ small,
   left: 14px;
   top: 0;
   bottom: 0;
-  width: 2px;
+  width: 8px;
   background: linear-gradient(to bottom,
-      rgba(37, 99, 235, 0.6),
-      rgba(37, 99, 235, 0.15));
+      #812B37,
+      #ffffff);
+  border-radius: 100px;
 }
 
 .timeline-item {
@@ -357,6 +358,7 @@ small,
   margin-bottom: var(--space-24);
 }
 
+/* 
 .timeline-dot {
   position: absolute;
   left: -2px;
@@ -364,10 +366,8 @@ small,
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: #fff;
-  border: 3px solid var(--accent);
-  box-shadow: 0 0 0 6px var(--accent-soft);
-}
+  background: #000000;
+} */
 
 .experience-card {
   border-left: 4px solid var(--accent);

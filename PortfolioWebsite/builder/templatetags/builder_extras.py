@@ -1,4 +1,6 @@
 from django import template
+import re
+from django.utils.safestring import mark_safe
 
 register = template.Library()
 
@@ -31,3 +33,11 @@ def as_list(value):
     if not value:
         return []
     return split_lines(value)
+
+
+@register.filter(is_safe=True)
+def markdown_bold(value):
+    if not value:
+        return ""
+    text = str(value)
+    return mark_safe(re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", text))

@@ -3,6 +3,15 @@
   <div class="hero-balanced__copy">
     <h1 class="display-5 fw-bold"><span class="hero-balanced__title">{{ props.title }}</span></h1>
 
+
+    {% with body=props|dict_get:"body" %}
+    {% with subtitle=props|dict_get:"subtitle" %}
+      {% if body or subtitle %}
+        <p class="hero-balanced__body text-muted">{{ body|default:subtitle|markdown_bold|linebreaksbr|safe }}</p>
+      {% endif %}
+    {% endwith %}
+    {% endwith %}
+
     {% if props.pills %}
       <div class="hero-balanced__chips mt-3">
         {% for pill in props.pills %}

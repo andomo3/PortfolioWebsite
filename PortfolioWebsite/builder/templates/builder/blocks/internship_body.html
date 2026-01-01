@@ -5,7 +5,7 @@
       <section class="card-premium mb-4">
         <div class="card-body">
           <h2 class="h4 fw-bold internship-body-title">Overview</h2>
-          <p class="text-muted">{{ props.overview|linebreaksbr }}</p>
+          <p class="text-muted">{{ props.overview|linebreaksbr|markdown_bold|safe }}</p>
         </div>
       </section>
     {% endif %}
@@ -13,12 +13,8 @@
     {% if props.whatBuilt %}
       <section class="card-premium mb-4">
         <div class="card-body">
-          <h2 class="h4 fw-bold internship-body-title">What I Built</h2>
-          <ul>
-            {% for item in props.whatBuilt|split_lines %}
-              <li>{{ item }}</li>
-            {% endfor %}
-          </ul>
+          <h2 class="h4 fw-bold internship-body-title">Learning and Growth</h2>
+          <p class="text-muted">{{ props.whatBuilt|linebreaksbr|markdown_bold|safe }}</p>
         </div>
       </section>
     {% endif %}
@@ -26,12 +22,8 @@
     {% if props.impact %}
       <section class="card-premium mb-4">
         <div class="card-body">
-          <h2 class="h4 fw-bold internship-body-title">Impact</h2>
-          <ul>
-            {% for item in props.impact|split_lines %}
-              <li>{{ item }}</li>
-            {% endfor %}
-          </ul>
+          <h2 class="h4 fw-bold internship-body-title">Takeaway</h2>
+          <p class="text-muted">{{ props.impact|linebreaksbr|markdown_bold|safe }}</p>
         </div>
       </section>
     {% endif %}

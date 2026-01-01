@@ -14,7 +14,7 @@
   {% endwith %}
   {% with body=props|dict_get:"body" %}
     {% if body %}
-      <div class="builder-rich-text-body builder-block-body text-muted">{{ body|urlize|linebreaksbr }}</div>
+      <div class="builder-rich-text-body builder-block-body text-muted">{{ body|markdown_bold|urlize|linebreaksbr|safe }}</div>
     {% endif %}
   {% endwith %}
 </section>

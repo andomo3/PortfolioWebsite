@@ -30,14 +30,14 @@
               {% with item_url=item|dict_get:"url" %}
               {% with item_slug=item|dict_get:"slug" %}
                 {% if item_url or item_slug %}
-                  <a class="btn btn-outline-secondary btn-sm" href="{% if item_url %}{{ item_url }}{% else %}/p/internships/{{ item_slug }}/{% endif %}">View</a>
+                  <a class="btn btn-primary btn-sm" href="{% if item_url %}{{ item_url }}{% else %}/p/internships/{{ item_slug }}/{% endif %}">View</a>
                 {% endif %}
               {% endwith %}
               {% endwith %}
             </div>
 
             {% if item|dict_get:"subtitle" %}
-              <p class="text-muted">{{ item|dict_get:"subtitle" }}</p>
+              <p class="text-muted">{{ item|dict_get:"subtitle"|markdown_bold|safe }}</p>
             {% endif %}
 
             {% with highlights=item|dict_get:"highlights" %}

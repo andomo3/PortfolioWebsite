@@ -1,3 +1,4 @@
+{% load builder_extras %}
 <section class="py-3 project-body-block">
-  <div class="builder-block-body text-muted">{{ props.body|linebreaksbr }}</div>
+  <div class="builder-block-body text-muted">{{ props.body|markdown_bold|linebreaksbr|safe }}</div>
 </section>
