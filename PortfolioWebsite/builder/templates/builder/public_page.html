@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}{{ page.title }}{% endblock %}
+
+{% block content %}
+<div class="container py-5 builder-page builder-page-{{ page.slug }}">
+  {% for block in layout.blocks %}
+    {% include "builder/blocks/_render.html" with block=block %}
+  {% endfor %}
+</div>
+{% endblock %}

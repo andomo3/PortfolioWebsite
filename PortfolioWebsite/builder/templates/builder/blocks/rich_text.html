@@ -1,0 +1,20 @@
+{% load builder_extras %}
+<section class="py-4 builder-rich-text">
+  {% with kicker=props|dict_get:"kicker" %}
+    {% if kicker %}
+      <p class="text-uppercase text-muted small mb-2 builder-block-kicker">{{ kicker }}</p>
+    {% endif %}
+  {% endwith %}
+  {% with title=props|dict_get:"title" %}
+  {% with heading=props|dict_get:"heading" %}
+    {% if title or heading %}
+      <h2 class="display-5 fw-bold builder-block-title">{{ title|default:heading }}</h2>
+    {% endif %}
+  {% endwith %}
+  {% endwith %}
+  {% with body=props|dict_get:"body" %}
+    {% if body %}
+      <div class="builder-rich-text-body builder-block-body text-muted">{{ body|markdown_bold|urlize|linebreaksbr|safe }}</div>
+    {% endif %}
+  {% endwith %}
+</section>

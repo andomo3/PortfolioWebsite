@@ -1,0 +1,13 @@
+<section class="py-5">
+  {# Heading removed per builder-first redundancy #}
+
+  {% if props.source == "all" %}
+    {% with projects=all_projects %}
+      {% include "builder/blocks/project_grid_list.html" %}
+    {% endwith %}
+  {% else %}
+    {% with projects=featured_projects %}
+      {% include "builder/blocks/project_grid_list.html" %}
+    {% endwith %}
+  {% endif %}
+</section>

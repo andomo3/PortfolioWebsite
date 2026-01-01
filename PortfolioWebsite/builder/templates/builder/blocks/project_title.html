@@ -1,0 +1,10 @@
+<section class="py-3 project-title-block">
+  {% if props.title %}
+    <h1 class="display-5 fw-bold">{{ props.title }}</h1>
+  {% endif %}
+  {% if props.githubUrl %}
+    <a class="btn btn-outline-primary btn-sm mt-2" href="{{ props.githubUrl }}" target="_blank" rel="noopener">
+      {{ props.githubLabel|default:"View GitHub" }}
+    </a>
+  {% endif %}
+</section>

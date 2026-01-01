@@ -1,0 +1,89 @@
+{% load builder_extras %}
+<section class="py-5 interactive-hero hero-balanced">
+  <div class="hero-balanced__copy">
+    <h1 class="display-5 fw-bold"><span class="hero-balanced__title">{{ props.title }}</span></h1>
+
+
+    {% with body=props|dict_get:"body" %}
+    {% with subtitle=props|dict_get:"subtitle" %}
+      {% if body or subtitle %}
+        <p class="hero-balanced__body text-muted">{{ body|default:subtitle|markdown_bold|linebreaksbr|safe }}</p>
+      {% endif %}
+    {% endwith %}
+    {% endwith %}
+
+    {% if props.pills %}
+      <div class="hero-balanced__chips mt-3">
+        {% for pill in props.pills %}
+          <span class="status-badge">{{ pill }}</span>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <div class="d-flex gap-2 flex-wrap mt-4">
+      {% if props.ctaPrimary %}
+        {% if props.ctaPrimary.href == "/projects" or props.ctaPrimary.href == "/projects/" or props.ctaPrimary.href == "#projects" or props.ctaPrimary.href == "/p/home/#projects" %}
+          <a class="btn btn-primary" href="/p/projects/">{{ props.ctaPrimary.label }}</a>
+        {% else %}
+          <a class="btn btn-primary" href="{{ props.ctaPrimary.href }}">{{ props.ctaPrimary.label }}</a>
+        {% endif %}
+      {% endif %}
+      {% if props.ctaSecondary %}
+        {% if props.ctaSecondary.href == "/resume/download/" %}
+          <a class="btn btn-primary" href="{{ props.ctaSecondary.href }}" download target="_blank" rel="noopener">{{ props.ctaSecondary.label }}</a>
+        {% else %}
+          <a class="btn btn-primary" href="{{ props.ctaSecondary.href }}">{{ props.ctaSecondary.label }}</a>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+
+  {% with media_asset_id=props|dict_get:"mediaAssetId" %}
+  {% with asset=media_asset_map|dict_get:media_asset_id %}
+    {% if asset or props.mediaUrl %}
+      <div class="hero-balanced__media">
+        <div class="hero-balanced__frame">
+        {% if props.mediaLink %}
+          <a href="{{ props.mediaLink }}" class="hero-media-link">
+        {% endif %}
+
+        {% if props.mediaType == "video" %}
+          {% if asset %}
+            <video class="hero-balanced__image" src="{{ asset.file.url }}" controls playsinline></video>
+          {% else %}
+            {% if "drive.google.com" in props.mediaUrl or "youtube.com" in props.mediaUrl or "youtu.be" in props.mediaUrl %}
+              <div class="hero-balanced__embed">
+                <iframe
+                  class="hero-balanced__embed-frame"
+                  src="{{ props.mediaUrl }}"
+                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            {% else %}
+              <video class="hero-balanced__image" src="{{ props.mediaUrl }}" controls playsinline></video>
+            {% endif %}
+          {% endif %}
+        {% else %}
+          {% if asset %}
+            <img class="hero-balanced__image" src="{{ asset.file.url }}" alt="{{ asset.alt_text|default:'Hero media' }}">
+          {% else %}
+            <img class="hero-balanced__image" src="{{ props.mediaUrl }}" alt="{{ props.mediaAlt|default:'Hero media' }}">
+          {% endif %}
+        {% endif %}
+
+        {% if props.mediaLink %}
+          </a>
+        {% endif %}
+        </div>
+      </div>
+    {% endif %}
+  {% endwith %}
+  {% endwith %}
+</section>
+
+
+
+
+
+

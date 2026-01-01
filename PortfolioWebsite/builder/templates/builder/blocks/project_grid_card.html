@@ -1,0 +1,26 @@
+{% load builder_extras %}
+<div class="{{ col_class }}">
+  <a class="project-card-link" href="/p/projects/{{ project.title|slugify }}/">
+    <div class="card h-100 shadow-sm project-card">
+      {% if project.image %}
+        <img src="{{ project.image.url }}" class="card-img-top project-card-media" alt="{{ project.title }}">
+      {% else %}
+        <div class="project-card-media-placeholder"></div>
+      {% endif %}
+      {% with preview=project_previews|dict_get:project.id %}
+        <div class="card-body">
+          <h5 class="card-title fw-bold">
+            {% if preview.title %}{{ preview.title }}{% else %}{{ project.title }}{% endif %}
+          </h5>
+          <p class="card-text">
+            {% if preview.body %}
+              {{ preview.body|truncatewords:30 }}
+            {% else %}
+              Add project content in Studio.
+            {% endif %}
+          </p>
+        </div>
+      {% endwith %}
+    </div>
+  </a>
+</div>

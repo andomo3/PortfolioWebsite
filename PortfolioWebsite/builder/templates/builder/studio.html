@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Studio{% endblock %}
+
+{% block content %}
+
+<div id="studio-force-light"></div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.remove("theme-dark");
+    localStorage.setItem("theme", "light");
+  });
+</script>
+
+<div class="container py-4">
+  <div id="studio-root" data-page-slug="{{ page_slug }}"></div>
+</div>
+
+<link rel="stylesheet" href="{% static 'builder/assets/index.css' %}">
+<script type="module" src="{% static 'builder/assets/index.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,86 @@
+﻿/* Motion tokens used by interactive elements */
+:root {
+  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-1: 620ms;
+  --dur-2: 680ms;
+  --dur-3: 760ms;
+  --lift-1: translateY(-1px);
+  --lift-2: translateY(-2px);
+  --scale-1: scale(1.01);
+  --scale-2: scale(1.02);
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(17, 24, 39, 0.08);
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 1.5s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1.5s !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Non-conflicting utilities only. Hover/transition rules live in custom.css. */
+
+/* Blur-up image load helper */
+.img-blur-up {
+  filter: blur(10px);
+  opacity: 0.85;
+  transition: filter var(--dur-3) var(--ease-out),
+    opacity var(--dur-3) var(--ease-out);
+}
+
+.img-blur-up.is-loaded {
+  filter: blur(0);
+  opacity: 1;
+}
+
+/* Toast container + entry animation */
+.toast-shell {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  display: grid;
+  gap: 10px;
+  z-index: 2000;
+}
+
+.toast {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow-hover);
+  padding: 10px 12px;
+  min-width: 220px;
+  animation: toastIn var(--dur-3) var(--ease-out) both;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Drag-and-drop state styles */
+.dnd-dragging {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(37, 99, 235, 0.25);
+}
+
+.dnd-placeholder {
+  border: 2px dashed rgba(37, 99, 235, 0.35);
+  background: rgba(37, 99, 235, 0.06);
+  border-radius: var(--radius-lg);
+  min-height: 60px;
+}

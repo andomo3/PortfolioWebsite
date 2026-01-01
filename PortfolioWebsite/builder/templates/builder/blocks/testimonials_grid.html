@@ -1,0 +1,28 @@
+<section class="py-5">
+  {# Heading removed per builder-first redundancy #}
+  {% if testimonials %}
+    <div class="row">
+      {% for testimonial in testimonials %}
+        <div class="col-md-6 mb-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <blockquote class="blockquote mb-0">
+                <p>{{ testimonial.quote }}</p>
+                <footer class="blockquote-footer">
+                  {{ testimonial.author_name }}{% if testimonial.role %}, {{ testimonial.role }}{% endif %}
+                </footer>
+              </blockquote>
+              {% if testimonial.embed_code %}
+                <div class="ratio ratio-16x9 mt-3">
+                  {{ testimonial.embed_code|safe }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="text-muted">No testimonials yet.</p>
+  {% endif %}
+</section>

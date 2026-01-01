@@ -1,0 +1,25 @@
+{% if projects %}
+  <div class="row g-4">
+    {% for project in projects %}
+      {% if props.columns == 1 %}
+        {% with col_class="col-12" %}
+          {% include "builder/blocks/project_grid_card.html" %}
+        {% endwith %}
+      {% elif props.columns == 2 %}
+        {% with col_class="col-md-6" %}
+          {% include "builder/blocks/project_grid_card.html" %}
+        {% endwith %}
+      {% elif props.columns == 4 %}
+        {% with col_class="col-md-3" %}
+          {% include "builder/blocks/project_grid_card.html" %}
+        {% endwith %}
+      {% else %}
+        {% with col_class="col-md-4" %}
+          {% include "builder/blocks/project_grid_card.html" %}
+        {% endwith %}
+      {% endif %}
+    {% endfor %}
+  </div>
+{% else %}
+  <p class="text-muted">No projects to show yet.</p>
+{% endif %}
