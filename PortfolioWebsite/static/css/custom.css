@@ -706,8 +706,23 @@ body.theme-dark .theme-toggle-btn:focus-visible {
 /* Dark mode text fixes */
 body.theme-dark .hero-balanced__body,
 body.theme-dark .builder-rich-text-body,
+body.theme-dark .builder-block-body,
 body.theme-dark .project-card .card-title,
 body.theme-dark .project-card .card-text,
+body.theme-dark .project-body-block,
+body.theme-dark .project-body-block p,
+body.theme-dark .project-body-block li,
+body.theme-dark .project-body-block .text-muted,
+body.theme-dark .project-body-block .builder-block-body,
+body.theme-dark .project-body-block h2,
+body.theme-dark .internship-title-block,
+body.theme-dark .internship-title-block p,
+body.theme-dark .internship-title-block .text-muted,
+body.theme-dark .internship-body-block,
+body.theme-dark .internship-body-block p,
+body.theme-dark .internship-body-block li,
+body.theme-dark .internship-body-block .text-muted,
+body.theme-dark .internship-body-block h2,
 body.theme-dark .internship-list-block .card-title,
 body.theme-dark .internship-list-block .card-text,
 body.theme-dark .internship-list-block .text-muted {
@@ -820,3 +835,5 @@ body.theme-dark .hero-balanced__copy .btn-primary:focus-visible {
 .hero-balanced__image:hover {
   transform: translateY(-2px);
 }
+
+
