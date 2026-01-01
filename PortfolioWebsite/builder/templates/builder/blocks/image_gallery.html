@@ -1,0 +1,22 @@
+{% load builder_extras %}
+<section class="py-3 image-gallery-block">
+  {% with images=props|dict_get:"images" %}
+    {% if images %}
+      <div class="image-gallery">
+        {% for item in images|as_list %}
+          {% if forloop.counter <= 3 %}
+            {% with url=item|dict_get:"url" %}
+            {% with alt=item|dict_get:"alt" %}
+              {% if url %}
+                <img class="image-gallery__image hero-balanced__image" src="{{ url }}" alt="{{ alt|default:'Gallery image' }}">
+              {% endif %}
+            {% endwith %}
+            {% endwith %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="embed-slot">Add up to 3 image URLs.</div>
+    {% endif %}
+  {% endwith %}
+</section>

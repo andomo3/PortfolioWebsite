@@ -18,6 +18,8 @@
   {% include "builder/blocks/project_body.html" with props=block.props %}
 {% elif block.type == "projectMedia" %}
   {% include "builder/blocks/project_media.html" with props=block.props media_asset_map=media_asset_map %}
+{% elif block.type == "imageGallery" %}
+  {% include "builder/blocks/image_gallery.html" with props=block.props %}
 {% elif block.type == "internshipList" %}
   {% include "builder/blocks/internship_list.html" with props=block.props %}
 {% elif block.type == "internshipTimeline" %}
@@ -35,3 +37,4 @@
     Unknown block type: {{ block.type }}
   </div>
 {% endif %}
+
