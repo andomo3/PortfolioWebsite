@@ -28,6 +28,7 @@ urlpatterns = [
     path('', include('builder.urls')),
     path('projects/', RedirectView.as_view(url='/p/projects/', permanent=False)),
     path('resume/', RedirectView.as_view(url='/p/resume/', permanent=False)),
+    path('resume/', include('resume.urls')),
     path('contact/', RedirectView.as_view(url='/p/contact/', permanent=False)),
     path('media/resume/<str:filename>', serve_resume, name='serve_resume'),
 ]
@@ -37,3 +38,4 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

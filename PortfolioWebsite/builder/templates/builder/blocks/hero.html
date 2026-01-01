@@ -22,10 +22,18 @@
 
     <div class="d-flex gap-2 flex-wrap mt-4">
       {% if props.ctaPrimary %}
-        <a class="btn btn-primary" href="{{ props.ctaPrimary.href }}">{{ props.ctaPrimary.label }}</a>
+        {% if props.ctaPrimary.href == "/projects" or props.ctaPrimary.href == "/projects/" or props.ctaPrimary.href == "#projects" or props.ctaPrimary.href == "/p/home/#projects" %}
+          <a class="btn btn-primary" href="/p/projects/">{{ props.ctaPrimary.label }}</a>
+        {% else %}
+          <a class="btn btn-primary" href="{{ props.ctaPrimary.href }}">{{ props.ctaPrimary.label }}</a>
+        {% endif %}
       {% endif %}
       {% if props.ctaSecondary %}
-        <a class="btn btn-primary" href="{{ props.ctaSecondary.href }}">{{ props.ctaSecondary.label }}</a>
+        {% if props.ctaSecondary.href == "/resume/download/" %}
+          <a class="btn btn-primary" href="{{ props.ctaSecondary.href }}" download target="_blank" rel="noopener">{{ props.ctaSecondary.label }}</a>
+        {% else %}
+          <a class="btn btn-primary" href="{{ props.ctaSecondary.href }}">{{ props.ctaSecondary.label }}</a>
+        {% endif %}
       {% endif %}
     </div>
   </div>
@@ -73,3 +81,9 @@
   {% endwith %}
   {% endwith %}
 </section>
+
+
+
+
+
+
