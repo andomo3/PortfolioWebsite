@@ -1,19 +1,12 @@
 ﻿import { useEffect, useState } from "react";
 import { useEditorStore } from "../store/editorStore";
-import { listAssets } from "../api/assets";
-import type { MediaAssetDTO } from "../api/assets";
 
 export default function Inspector() {
-  const [assets, setAssets] = useState<MediaAssetDTO[]>([]);
   const [itemsJson, setItemsJson] = useState("");
   const selectedId = useEditorStore((state) => state.selectedBlockId);
   const blocks = useEditorStore((state) => state.history.present.blocks);
   const updateProps = useEditorStore((state) => state.updateBlockProps);
   const remove = useEditorStore((state) => state.removeBlock);
-
-  useEffect(() => {
-    listAssets().then(setAssets).catch(() => setAssets([]));
-  }, []);
 
   const block = blocks.find((item) => item.id === selectedId);
   
@@ -156,10 +149,11 @@ export default function Inspector() {
               </select>
             </label>
             <label>
-              <div style={{ fontSize: 12, opacity: 0.7 }}>Media URL</div>
+              <div style={{ fontSize: 12, opacity: 0.7 }}>Media Path (static/images, no extension)</div>
               <input
                 value={props.mediaUrl || ""}
                 onChange={(event) => updateProps(block.id, { mediaUrl: event.target.value })}
+                placeholder="hero/headshot"
                 style={{ width: "100%", padding: 10, borderRadius: 12, border: "1px solid rgba(0,0,0,0.12)" }}
               />
             </label>
@@ -178,21 +172,6 @@ export default function Inspector() {
                 onChange={(event) => updateProps(block.id, { mediaLink: event.target.value })}
                 style={{ width: "100%", padding: 10, borderRadius: 12, border: "1px solid rgba(0,0,0,0.12)" }}
               />
-            </label>
-            <label>
-              <div style={{ fontSize: 12, opacity: 0.7 }}>Media Asset (from Admin)</div>
-              <select
-                value={props.mediaAssetId ?? ""}
-                onChange={(event) => updateProps(block.id, { mediaAssetId: event.target.value ? Number(event.target.value) : null })}
-                style={{ width: "100%", padding: 10, borderRadius: 12, border: "1px solid rgba(0,0,0,0.12)" }}
-              >
-                <option value="">Use Media URL</option>
-                {assets.map((asset) => (
-                  <option key={asset.id} value={asset.id}>
-                    {asset.id} | {asset.alt_text || asset.file}
-                  </option>
-                ))}
-              </select>
             </label>
           </>
         )}
@@ -279,7 +258,7 @@ export default function Inspector() {
                     <input
                       value={image.url || ""}
                       onChange={(event) => updateImage(index, { url: event.target.value })}
-                      placeholder="/media/builder_assets/your-image.jpg"
+                      placeholder="gallery/your-image"
                       style={{ width: "100%", padding: 10, borderRadius: 12, border: "1px solid rgba(0,0,0,0.12)" }}
                     />
                     <input
@@ -309,10 +288,11 @@ export default function Inspector() {
               </select>
             </label>
             <label>
-              <div style={{ fontSize: 12, opacity: 0.7 }}>Media URL</div>
+              <div style={{ fontSize: 12, opacity: 0.7 }}>Media Path (static/images, no extension)</div>
               <input
                 value={props.mediaUrl || ""}
                 onChange={(event) => updateProps(block.id, { mediaUrl: event.target.value })}
+                placeholder="hero/headshot"
                 style={{ width: "100%", padding: 10, borderRadius: 12, border: "1px solid rgba(0,0,0,0.12)" }}
               />
             </label>
@@ -341,21 +321,6 @@ export default function Inspector() {
                 onChange={(event) => updateProps(block.id, { mediaAlt: event.target.value })}
                 style={{ width: "100%", padding: 10, borderRadius: 12, border: "1px solid rgba(0,0,0,0.12)" }}
               />
-            </label>
-            <label>
-              <div style={{ fontSize: 12, opacity: 0.7 }}>Media Asset (from Admin)</div>
-              <select
-                value={props.mediaAssetId ?? ""}
-                onChange={(event) => updateProps(block.id, { mediaAssetId: event.target.value ? Number(event.target.value) : null })}
-                style={{ width: "100%", padding: 10, borderRadius: 12, border: "1px solid rgba(0,0,0,0.12)" }}
-              >
-                <option value="">Use Media URL</option>
-                {assets.map((asset) => (
-                  <option key={asset.id} value={asset.id}>
-                    {asset.id} | {asset.alt_text || asset.file}
-                  </option>
-                ))}
-              </select>
             </label>
           </>
         )}
