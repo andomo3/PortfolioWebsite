@@ -224,19 +224,13 @@
     {% for project in featured_projects %}
     <div class="col-md-4 mb-4" data-aos="zoom-in">
       <div class="card h-100 shadow-sm project-hover">
-        {% if project.preview_media_asset %}
+        {% with preview_slug=project.title|slugify %}
         <img
-          src="{{ project.preview_media_asset.file.url }}"
-          class="card-img-top"
-          alt="{{ project.preview_media_asset.alt_text|default:project.title }}"
-        />
-        {% elif project.image %}
-        <img
-          src="{{ project.image.url }}"
+          src="{% static 'images/project_previews/' %}{{ preview_slug }}.jpg"
           class="card-img-top"
           alt="{{ project.title }}"
         />
-        {% endif %}
+        {% endwith %}
         <div class="card-body">
           <h5 class="card-title">{{ project.title }}</h5>
           <p class="card-text">{{ project.description|truncatewords:20 }}</p>

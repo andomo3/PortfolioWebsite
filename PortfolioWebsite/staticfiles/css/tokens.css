@@ -10,6 +10,13 @@
   --accent: #2563eb;
   --accent-strong: #1d4ed8;
   --accent-soft: rgba(37, 99, 235, 0.1);
+  --link: var(--text);
+  --link-hover: var(--text);
+
+  /* Brand accent (buttons + badges only) */
+  --brand-accent: #93313e;
+  --brand-accent-strong: #812b37;
+  --brand-accent-soft: #f0e2e4;
 
   /* Type scale */
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
@@ -52,7 +59,7 @@
   --container-pad-mobile: 20px;
 
   /* Motion */
-  --duration-fast: 180ms;
-  --duration-base: 200ms;
+  --duration-fast: 680ms;
+  --duration-base: 700ms;
   --ease-smooth: cubic-bezier(0.22, 0.61, 0.36, 1);
 }

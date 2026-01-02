@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Projects - MyPortfolio{% endblock %}
 
 {% block content %}
@@ -7,11 +8,9 @@
     {% for project in projects %}
     <div class="col-md-6 mb-4">
         <div class="card h-100">
-            {% if project.preview_media_asset %}
-            <img src="{{ project.preview_media_asset.file.url }}" class="card-img-top" alt="{{ project.preview_media_asset.alt_text|default:project.title }}">
-            {% elif project.image %}
-            <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
-            {% endif %}
+            {% with preview_slug=project.title|slugify %}
+            <img src="{% static 'images/project_previews/' %}{{ preview_slug }}.jpg" class="card-img-top" alt="{{ project.title }}">
+            {% endwith %}
             <div class="card-body">
                 <h5 class="card-title">
                     <a href="{% url 'projects:project_detail' pk=project.pk %}">

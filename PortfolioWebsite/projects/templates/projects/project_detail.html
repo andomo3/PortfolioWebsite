@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}{{ project.title }} - Abba Ndomo{% endblock %}
 
 {% block content %}
@@ -7,9 +8,9 @@
         <h2>{{ project.title }}</h2>
         <p class="text-muted">{{ project.created_at|date:"F d, Y" }}</p>
 
-        {% if project.image %}
-        <img src="{{ project.image.url }}" class="img-fluid mb-3 rounded shadow-sm" alt="{{ project.title }}">
-        {% endif %}
+        {% with preview_slug=project.title|slugify %}
+        <img src="{% static 'images/project_previews/' %}{{ preview_slug }}.jpg" class="img-fluid mb-3 rounded shadow-sm" alt="{{ project.title }}">
+        {% endwith %}
 
         <div class="markdown-content mb-3">
             {{ project.render_description|safe }}

@@ -1,4 +1,4 @@
-{% load builder_extras %}
+{% load builder_extras static %}
 <section class="py-3 image-gallery-block">
   {% with images=props|dict_get:"images" %}
     {% if images %}
@@ -8,7 +8,7 @@
             {% with url=item|dict_get:"url" %}
             {% with alt=item|dict_get:"alt" %}
               {% if url %}
-                <img class="image-gallery__image hero-balanced__image" src="{{ url }}" alt="{{ alt|default:'Gallery image' }}">
+                <img class="image-gallery__image hero-balanced__image" src="{% static 'images/' %}{{ url }}.jpg" alt="{{ alt|default:'Gallery image' }}">
               {% endif %}
             {% endwith %}
             {% endwith %}
@@ -16,7 +16,7 @@
         {% endfor %}
       </div>
     {% else %}
-      <div class="embed-slot">Add up to 3 image URLs.</div>
+      <div class="embed-slot">Add up to 3 image paths (relative to static/images).</div>
     {% endif %}
   {% endwith %}
 </section>

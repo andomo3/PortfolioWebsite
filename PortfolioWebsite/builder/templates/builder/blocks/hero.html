@@ -1,4 +1,4 @@
-{% load builder_extras %}
+{% load builder_extras static %}
 <section class="py-5 interactive-hero hero-balanced">
   <div class="hero-balanced__copy">
     <h1 class="display-5 fw-bold"><span class="hero-balanced__title">{{ props.title }}</span></h1>
@@ -38,48 +38,36 @@
     </div>
   </div>
 
-  {% with media_asset_id=props|dict_get:"mediaAssetId" %}
-  {% with asset=media_asset_map|dict_get:media_asset_id %}
-    {% if asset or props.mediaUrl %}
-      <div class="hero-balanced__media">
-        <div class="hero-balanced__frame">
-        {% if props.mediaLink %}
-          <a href="{{ props.mediaLink }}" class="hero-media-link">
-        {% endif %}
+  {% if props.mediaUrl %}
+    <div class="hero-balanced__media">
+      <div class="hero-balanced__frame">
+      {% if props.mediaLink %}
+        <a href="{{ props.mediaLink }}" class="hero-media-link">
+      {% endif %}
 
-        {% if props.mediaType == "video" %}
-          {% if asset %}
-            <video class="hero-balanced__image" src="{{ asset.file.url }}" controls playsinline></video>
-          {% else %}
-            {% if "drive.google.com" in props.mediaUrl or "youtube.com" in props.mediaUrl or "youtu.be" in props.mediaUrl %}
-              <div class="hero-balanced__embed">
-                <iframe
-                  class="hero-balanced__embed-frame"
-                  src="{{ props.mediaUrl }}"
-                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
-                  allowfullscreen
-                ></iframe>
-              </div>
-            {% else %}
-              <video class="hero-balanced__image" src="{{ props.mediaUrl }}" controls playsinline></video>
-            {% endif %}
-          {% endif %}
+      {% if props.mediaType == "video" %}
+        {% if "drive.google.com" in props.mediaUrl or "youtube.com" in props.mediaUrl or "youtu.be" in props.mediaUrl %}
+          <div class="hero-balanced__embed">
+            <iframe
+              class="hero-balanced__embed-frame"
+              src="{{ props.mediaUrl }}"
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
         {% else %}
-          {% if asset %}
-            <img class="hero-balanced__image" src="{{ asset.file.url }}" alt="{{ asset.alt_text|default:'Hero media' }}">
-          {% else %}
-            <img class="hero-balanced__image" src="{{ props.mediaUrl }}" alt="{{ props.mediaAlt|default:'Hero media' }}">
-          {% endif %}
+          <video class="hero-balanced__image" src="{{ props.mediaUrl }}" controls playsinline></video>
         {% endif %}
+      {% else %}
+        <img class="hero-balanced__image" src="{% static 'images/' %}{{ props.mediaUrl }}.jpg" alt="{{ props.mediaAlt|default:'Hero media' }}">
+      {% endif %}
 
-        {% if props.mediaLink %}
-          </a>
-        {% endif %}
-        </div>
+      {% if props.mediaLink %}
+        </a>
+      {% endif %}
       </div>
-    {% endif %}
-  {% endwith %}
-  {% endwith %}
+    </div>
+  {% endif %}
 </section>
 
 

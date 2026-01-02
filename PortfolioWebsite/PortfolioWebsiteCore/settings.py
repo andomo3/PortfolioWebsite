@@ -27,7 +27,7 @@ SECRET_KEY = os.getenv("SECRET_KEY", "xeqqy6-gaBwuj-petgeh")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost,portfolio-site-ea5i.onrender.com').split(',')
 
 
 # Application definition

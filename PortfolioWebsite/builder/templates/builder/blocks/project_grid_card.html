@@ -1,14 +1,10 @@
-{% load builder_extras %}
+{% load builder_extras static %}
 <div class="{{ col_class }}">
   <a class="project-card-link" href="/p/projects/{{ project.title|slugify }}/">
     <div class="card h-100 shadow-sm project-card">
-      {% if project.preview_media_asset %}
-        <img src="{{ project.preview_media_asset.file.url }}" class="card-img-top project-card-media" alt="{{ project.preview_media_asset.alt_text|default:project.title }}">
-      {% elif project.image %}
-        <img src="{{ project.image.url }}" class="card-img-top project-card-media" alt="{{ project.title }}">
-      {% else %}
-        <div class="project-card-media-placeholder"></div>
-      {% endif %}
+      {% with preview_slug=project.title|slugify %}
+        <img src="{% static 'images/project_previews/' %}{{ preview_slug }}.jpg" class="card-img-top project-card-media" alt="{{ project.title }}">
+      {% endwith %}
       {% with preview=project_previews|dict_get:project.id %}
         <div class="card-body">
           <h5 class="card-title fw-bold">
