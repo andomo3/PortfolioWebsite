@@ -31,6 +31,15 @@ export default function Inspector() {
 
   const props = block.props as any;
 
+  const updateImage = (index: number, patch: { url?: string; alt?: string }) => {
+    const next = Array.isArray(props.images) ? [...props.images] : [];
+    while (next.length < 3) {
+      next.push({});
+    }
+    next[index] = { ...next[index], ...patch };
+    updateProps(block.id, { images: next });
+  };
+
   return (
     <div style={{ padding: 12 }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -212,6 +221,33 @@ export default function Inspector() {
               style={{ width: "100%", padding: 10, borderRadius: 12, border: "1px solid rgba(0,0,0,0.12)" }}
             />
           </label>
+        )}
+
+        {block.type === "imageGallery" && (
+          <>
+            {[0, 1, 2].map((index) => {
+              const image = (props.images || [])[index] || {};
+              return (
+                <div key={index} style={{ border: "1px solid rgba(0,0,0,0.08)", borderRadius: 12, padding: 10 }}>
+                  <div style={{ fontSize: 12, opacity: 0.7, marginBottom: 6 }}>Image {index + 1}</div>
+                  <label style={{ display: "grid", gap: 6 }}>
+                    <input
+                      value={image.url || ""}
+                      onChange={(event) => updateImage(index, { url: event.target.value })}
+                      placeholder="/media/builder_assets/your-image.jpg"
+                      style={{ width: "100%", padding: 10, borderRadius: 12, border: "1px solid rgba(0,0,0,0.12)" }}
+                    />
+                    <input
+                      value={image.alt || ""}
+                      onChange={(event) => updateImage(index, { alt: event.target.value })}
+                      placeholder="Alt text (optional)"
+                      style={{ width: "100%", padding: 10, borderRadius: 12, border: "1px solid rgba(0,0,0,0.12)" }}
+                    />
+                  </label>
+                </div>
+              );
+            })}
+          </>
         )}
 
         {block.type === "projectMedia" && (

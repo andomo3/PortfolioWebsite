@@ -4,6 +4,7 @@ import ProjectGridBlock from "./ProjectGridBlock";
 import ProjectTitleBlock from "./ProjectTitleBlock";
 import ProjectBodyBlock from "./ProjectBodyBlock";
 import ProjectMediaBlock from "./ProjectMediaBlock";
+import ImageGalleryBlock from "./ImageGalleryBlock";
 import ContactBlock from "./ContactBlock";
 import InternshipListBlock from "./InternshipListBlock";
 import InternshipTimelineBlock from "./InternshipTimelineBlock";
@@ -23,6 +24,7 @@ export const blockRegistry: Record<BlockType, any> = {
   projectTitle: ProjectTitleBlock,
   projectBody: ProjectBodyBlock,
   projectMedia: ProjectMediaBlock,
+  imageGallery: ImageGalleryBlock,
   contactBlock: ContactBlock,
   internshipList: InternshipListBlock,
   internshipTimeline: InternshipTimelineBlock,
@@ -42,6 +44,7 @@ export const blockLabels: Record<BlockType, string> = {
   projectTitle: "Project Title",
   projectBody: "Project Body",
   projectMedia: "Project Media",
+  imageGallery: "Image Gallery",
   contactBlock: "Contact",
   internshipList: "Internship List",
   internshipTimeline: "Internship Timeline",
@@ -49,3 +52,4 @@ export const blockLabels: Record<BlockType, string> = {
   internshipMeta: "Internship Meta",
   internshipBody: "Internship Body",
 };
+

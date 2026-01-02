@@ -38,6 +38,15 @@ function defaultProps(type: BlockType) {
       embedHeight: 720,
     };
   }
+  if (type === "imageGallery") {
+    return {
+      images: [
+        { url: "/media/builder_assets/example-1.jpg", alt: "Gallery image 1" },
+        { url: "/media/builder_assets/example-2.jpg", alt: "Gallery image 2" },
+        { url: "/media/builder_assets/example-3.jpg", alt: "Gallery image 3" },
+      ],
+    };
+  }
   if (type === "contactBlock") {
     return {
       title: "Get in touch",
@@ -79,6 +88,7 @@ export default function BlockLibrary() {
     "projectTitle",
     "projectBody",
     "projectMedia",
+    "imageGallery",
     "contactBlock",
     "internshipList",
     "internshipTimeline",

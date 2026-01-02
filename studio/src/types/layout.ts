@@ -1,4 +1,4 @@
-﻿export type BlockType =
+export type BlockType =
   | "hero"
   | "richText"
   | "projectGrid"
@@ -9,6 +9,7 @@
   | "projectTitle"
   | "projectBody"
   | "projectMedia"
+  | "imageGallery"
   | "contactBlock"
   | "internshipList"
   | "internshipTimeline"
@@ -74,6 +75,15 @@ export type ProjectMediaProps = {
   mediaAssetId?: number | null;
   embedUrl?: string;
   embedHeight?: number;
+};
+
+export type ImageGalleryItem = {
+  url?: string;
+  alt?: string;
+};
+
+export type ImageGalleryProps = {
+  images?: ImageGalleryItem[];
 };
 
 export type ResearchListProps = {
@@ -152,4 +162,5 @@ export type InternshipBodyProps = {
   whatBuilt?: string;
   impact?: string;
 };
+
 
