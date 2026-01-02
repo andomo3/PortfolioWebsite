@@ -52,6 +52,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".hero-balanced").forEach((el) => revealTargets.add(el));
   document.querySelectorAll(".builder-rich-text").forEach((el) => revealTargets.add(el));
+  document.querySelectorAll(".contact-block").forEach((el) => revealTargets.add(el));
+  document.querySelectorAll(".internship-list-block").forEach((el) => revealTargets.add(el));
+  document.querySelectorAll(".internship-timeline-block").forEach((el) => revealTargets.add(el));
 
   document.querySelectorAll(".project-card").forEach((card) => {
     revealTargets.add(card);
