@@ -134,7 +134,12 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+if os.getenv("RENDER"):
+    MEDIA_ROOT = "/var/media"
+else:
+    MEDIA_ROOT = BASE_DIR / "media"
+
+
 
 FORM_RENDERER = 'django.forms.renderers.DjangoTemplates'
 
