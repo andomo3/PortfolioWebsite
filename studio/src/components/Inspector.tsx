@@ -31,6 +31,17 @@ export default function Inspector() {
 
   const props = block.props as any;
 
+  const updateCta = (
+    key: "ctaPrimary" | "ctaSecondary",
+    patch: { label?: string; href?: string }
+  ) => {
+    const next = { ...(props[key] || {}) };
+    if (patch.label !== undefined) next.label = patch.label;
+    if (patch.href !== undefined) next.href = patch.href;
+    updateProps(block.id, { [key]: next });
+  };
+
+
   const updateImage = (index: number, patch: { url?: string; alt?: string }) => {
     const next = Array.isArray(props.images) ? [...props.images] : [];
     while (next.length < 3) {
@@ -96,6 +107,40 @@ export default function Inspector() {
                 value={(props.pills || []).join("\n")}
                 onChange={(event) => updateProps(block.id, { pills: event.target.value.split("\n").filter(Boolean) })}
                 rows={4}
+                style={{ width: "100%", padding: 10, borderRadius: 12, border: "1px solid rgba(0,0,0,0.12)" }}
+              />
+            </label>
+            <label>
+              <div style={{ fontSize: 12, opacity: 0.7 }}>CTA Primary Label</div>
+              <input
+                value={props.ctaPrimary?.label || ""}
+                onChange={(event) => updateCta("ctaPrimary", { label: event.target.value })}
+                style={{ width: "100%", padding: 10, borderRadius: 12, border: "1px solid rgba(0,0,0,0.12)" }}
+              />
+            </label>
+            <label>
+              <div style={{ fontSize: 12, opacity: 0.7 }}>CTA Primary URL</div>
+              <input
+                value={props.ctaPrimary?.href || ""}
+                onChange={(event) => updateCta("ctaPrimary", { href: event.target.value })}
+                placeholder="/p/projects/"
+                style={{ width: "100%", padding: 10, borderRadius: 12, border: "1px solid rgba(0,0,0,0.12)" }}
+              />
+            </label>
+            <label>
+              <div style={{ fontSize: 12, opacity: 0.7 }}>CTA Secondary Label</div>
+              <input
+                value={props.ctaSecondary?.label || ""}
+                onChange={(event) => updateCta("ctaSecondary", { label: event.target.value })}
+                style={{ width: "100%", padding: 10, borderRadius: 12, border: "1px solid rgba(0,0,0,0.12)" }}
+              />
+            </label>
+            <label>
+              <div style={{ fontSize: 12, opacity: 0.7 }}>CTA Secondary URL</div>
+              <input
+                value={props.ctaSecondary?.href || ""}
+                onChange={(event) => updateCta("ctaSecondary", { href: event.target.value })}
+                placeholder="/media/builder_assets/YourResume.pdf"
                 style={{ width: "100%", padding: 10, borderRadius: 12, border: "1px solid rgba(0,0,0,0.12)" }}
               />
             </label>
