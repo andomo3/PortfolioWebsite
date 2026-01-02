@@ -224,7 +224,13 @@
     {% for project in featured_projects %}
     <div class="col-md-4 mb-4" data-aos="zoom-in">
       <div class="card h-100 shadow-sm project-hover">
-        {% if project.image %}
+        {% if project.preview_media_asset %}
+        <img
+          src="{{ project.preview_media_asset.file.url }}"
+          class="card-img-top"
+          alt="{{ project.preview_media_asset.alt_text|default:project.title }}"
+        />
+        {% elif project.image %}
         <img
           src="{{ project.image.url }}"
           class="card-img-top"
