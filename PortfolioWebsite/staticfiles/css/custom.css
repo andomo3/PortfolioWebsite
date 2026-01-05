@@ -243,11 +243,38 @@
 .builder-rich-text {
   font-size: 18px;
   line-height: 1.65;
+  font-family: var(--font-sans);
 }
 
 .builder-rich-text p {
   font-size: inherit;
   line-height: inherit;
+  font-family: inherit;
+}
+
+/* Ensure core blocks use the global Inter stack */
+.hero-balanced,
+.hero-balanced__copy,
+.hero-balanced__title,
+.hero-balanced__body,
+.hero-balanced__chips,
+.builder-rich-text,
+.builder-rich-text-body,
+.builder-block-title,
+.builder-block-body,
+.builder-block-kicker,
+.project-title-block,
+.project-title-block h1,
+.project-body-block,
+.internship-title-block,
+.internship-body-block,
+.internship-meta,
+.internship-list-block,
+.internship-timeline-block,
+.contact-block,
+.contact-block__title,
+.contact-block__body {
+  font-family: var(--font-sans);
 }
 
 /* Builder block body matches hero subtitle styling */
@@ -916,4 +943,5 @@ body.theme-dark .project-title-block .btn-outline-primary:focus-visible {
   border-color: #f5f5f5 !important;
   color: #000000 !important;
 }
+
 
