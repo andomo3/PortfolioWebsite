@@ -3,7 +3,7 @@ from django.db import models
 
 
 class Page(models.Model):
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, max_length=200)
     title = models.CharField(max_length=200, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
