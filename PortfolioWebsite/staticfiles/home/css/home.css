@@ -1,7 +1,0 @@
-#intro-preview {
-    display: -webkit-box;
-    -webkit-line-clamp: 30;
-    /* number of lines to show */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}

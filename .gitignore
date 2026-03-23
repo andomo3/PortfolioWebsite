@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-studio/node_modules/
-=======
 __pycache__/
 *.pyc
 *.pyo
@@ -32,4 +29,3 @@ media/
 .DS_Store
 Thumbs.db
 *.log
->>>>>>> 5fc7b02 (Add root gitignore)
