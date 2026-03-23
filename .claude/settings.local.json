@@ -3,7 +3,13 @@
     "allow": [
       "Bash(python manage.py migrate projects)",
       "Bash(python manage.py makemigrations projects)",
-      "Bash(find 'C:\\\\Users\\\\maxst\\\\Desktop\\\\Projects\\\\SUMMER 2025\\\\PortfolioWebsite' -name *.json -type f ! -path */venv/* ! -path */node_modules/* ! -path */.claude/*)"
+      "Bash(find 'C:\\\\Users\\\\maxst\\\\Desktop\\\\Projects\\\\SUMMER 2025\\\\PortfolioWebsite' -name *.json -type f ! -path */venv/* ! -path */node_modules/* ! -path */.claude/*)",
+      "Bash(source venv/Scripts/activate)",
+      "Bash(pip freeze:*)",
+      "Bash(source ../venv/Scripts/activate)",
+      "Bash(python manage.py makemigrations builder --name \"increase_page_slug_max_length\")",
+      "Bash(python -c \":*)",
+      "Bash(./venv/Scripts/python.exe -c \":*)"
     ]
   }
 }

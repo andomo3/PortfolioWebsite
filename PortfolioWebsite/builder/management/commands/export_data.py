@@ -35,6 +35,7 @@ class Command(BaseCommand):
             "--natural-primary",
             "--exclude=auth.permission",
             "--exclude=contenttypes",
+            "--exclude=admin",
             "--indent=2",
             stdout=buf,
         )
