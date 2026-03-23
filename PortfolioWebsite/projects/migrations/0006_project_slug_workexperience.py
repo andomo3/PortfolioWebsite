@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="project",
             name="slug",
-            field=models.SlugField(blank=True, unique=False),
+            field=models.SlugField(blank=True, unique=False, db_index=False),
         ),
         # Populate slugs for existing projects from their titles
         migrations.RunSQL(
