@@ -137,12 +137,20 @@ export type InternshipTimelineItem = {
 export type InternshipListProps = {
   heading?: string;
   subtitle?: string;
+  /** "db" = pull from WorkExperience admin records; "manual" = use items array below */
+  source?: "db" | "manual";
+  /** When source="db", optionally filter to featured=true only */
+  filter?: "featured" | "all";
   items?: InternshipListItem[];
 };
 
 export type InternshipTimelineProps = {
   heading?: string;
   subtitle?: string;
+  /** "db" = pull from WorkExperience admin records; "manual" = use items array below */
+  source?: "db" | "manual";
+  /** When source="db", optionally filter to featured=true only */
+  filter?: "featured" | "all";
   items?: InternshipTimelineItem[];
 };
 

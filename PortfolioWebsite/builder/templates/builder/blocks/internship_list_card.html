@@ -1,0 +1,25 @@
+<div class="col-md-6 col-lg-4">
+  <a class="project-card-link" href="/p/internships/{{ item.slug }}/">
+    <div class="card-premium h-100">
+      <div class="card-body">
+        {% if item.company %}
+          <div class="text-uppercase text-muted small mb-2">{{ item.company }}</div>
+        {% endif %}
+        <h3 class="card-title fw-bold">{{ item.title }}</h3>
+        {% if item.subtitle %}
+          <p class="card-text text-muted">{{ item.subtitle }}</p>
+        {% endif %}
+        {% if item.duration %}
+          <p class="text-muted small mb-2">{{ item.duration }}</p>
+        {% endif %}
+        {% if item.tech_stack %}
+          <div class="d-flex flex-wrap gap-2 mt-3">
+            {% for tech in item.tech_stack %}
+              <span class="tech-badge">{{ tech }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </a>
+</div>

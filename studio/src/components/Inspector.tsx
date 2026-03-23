@@ -347,7 +347,7 @@ export default function Inspector() {
           </>
         )}
 
-        {block.type === "internshipList" && (
+        {(block.type === "internshipList" || block.type === "internshipTimeline") && (
           <>
             <label>
               <div style={{ fontSize: 12, opacity: 0.7 }}>Heading</div>
@@ -362,70 +362,59 @@ export default function Inspector() {
               <textarea
                 value={props.subtitle || ""}
                 onChange={(event) => updateProps(block.id, { subtitle: event.target.value })}
-                rows={3}
+                rows={2}
                 style={{ width: "100%", padding: 10, borderRadius: 12, border: "1px solid rgba(0,0,0,0.12)" }}
               />
             </label>
             <label>
-              <div style={{ fontSize: 12, opacity: 0.7 }}>Items (JSON array)</div>
-              <textarea
-                value={itemsJson}
-                onChange={(event) => setItemsJson(event.target.value)}
-                onBlur={() => {
-                  try {
-                    const parsed = JSON.parse(itemsJson);
-                    if (Array.isArray(parsed)) {
-                      updateProps(block.id, { items: parsed });
+              <div style={{ fontSize: 12, opacity: 0.7 }}>Source</div>
+              <select
+                value={props.source || "manual"}
+                onChange={(event) => updateProps(block.id, { source: event.target.value })}
+                style={{ width: "100%", padding: 10, borderRadius: 12, border: "1px solid rgba(0,0,0,0.12)" }}
+              >
+                <option value="manual">Manual (items below)</option>
+                <option value="db">Database (Django Admin)</option>
+              </select>
+            </label>
+            {props.source === "db" ? (
+              <>
+                <label>
+                  <div style={{ fontSize: 12, opacity: 0.7 }}>Filter</div>
+                  <select
+                    value={props.filter || "all"}
+                    onChange={(event) => updateProps(block.id, { filter: event.target.value })}
+                    style={{ width: "100%", padding: 10, borderRadius: 12, border: "1px solid rgba(0,0,0,0.12)" }}
+                  >
+                    <option value="all">All experiences</option>
+                    <option value="featured">Featured only</option>
+                  </select>
+                </label>
+                <div style={{ fontSize: 12, padding: "8px 12px", background: "rgba(0,100,255,0.06)", borderRadius: 10, color: "#555" }}>
+                  Experiences are managed in Django Admin → Work Experiences. Changes publish immediately.
+                </div>
+              </>
+            ) : (
+              <label>
+                <div style={{ fontSize: 12, opacity: 0.7 }}>Items (JSON array)</div>
+                <textarea
+                  value={itemsJson}
+                  onChange={(event) => setItemsJson(event.target.value)}
+                  onBlur={() => {
+                    try {
+                      const parsed = JSON.parse(itemsJson);
+                      if (Array.isArray(parsed)) {
+                        updateProps(block.id, { items: parsed });
+                      }
+                    } catch {
+                      // Ignore invalid JSON
                     }
-                  } catch {
-                    // Ignore invalid JSON
-                  }
-                }}
-                rows={8}
-                style={{ width: "100%", padding: 10, borderRadius: 12, border: "1px solid rgba(0,0,0,0.12)" }}
-              />
-            </label>
-          </>
-        )}
-
-        {block.type === "internshipTimeline" && (
-          <>
-            <label>
-              <div style={{ fontSize: 12, opacity: 0.7 }}>Heading</div>
-              <input
-                value={props.heading || ""}
-                onChange={(event) => updateProps(block.id, { heading: event.target.value })}
-                style={{ width: "100%", padding: 10, borderRadius: 12, border: "1px solid rgba(0,0,0,0.12)" }}
-              />
-            </label>
-            <label>
-              <div style={{ fontSize: 12, opacity: 0.7 }}>Subtitle</div>
-              <textarea
-                value={props.subtitle || ""}
-                onChange={(event) => updateProps(block.id, { subtitle: event.target.value })}
-                rows={3}
-                style={{ width: "100%", padding: 10, borderRadius: 12, border: "1px solid rgba(0,0,0,0.12)" }}
-              />
-            </label>
-            <label>
-              <div style={{ fontSize: 12, opacity: 0.7 }}>Items (JSON array)</div>
-              <textarea
-                value={itemsJson}
-                onChange={(event) => setItemsJson(event.target.value)}
-                onBlur={() => {
-                  try {
-                    const parsed = JSON.parse(itemsJson);
-                    if (Array.isArray(parsed)) {
-                      updateProps(block.id, { items: parsed });
-                    }
-                  } catch {
-                    // Ignore invalid JSON
-                  }
-                }}
-                rows={8}
-                style={{ width: "100%", padding: 10, borderRadius: 12, border: "1px solid rgba(0,0,0,0.12)" }}
-              />
-            </label>
+                  }}
+                  rows={8}
+                  style={{ width: "100%", padding: 10, borderRadius: 12, border: "1px solid rgba(0,0,0,0.12)" }}
+                />
+              </label>
+            )}
           </>
         )}
 

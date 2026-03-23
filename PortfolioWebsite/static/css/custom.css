@@ -94,12 +94,14 @@
   border-color: rgba(37, 99, 235, 0.18);
 }
 
-/* Project card media sizing */
+/* Project card media sizing — contain keeps full image visible, no cropping */
 .project-card-media {
   width: 100%;
-  height: 200px;
-  object-fit: cover;
+  height: 220px;
+  object-fit: contain;
   object-position: center;
+  background: var(--bs-light, #f8f9fa);
+  padding: 8px;
 }
 
 /* Placeholder inside project cards */

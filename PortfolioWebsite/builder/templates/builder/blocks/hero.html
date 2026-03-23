@@ -59,7 +59,13 @@
           <video class="hero-balanced__image" src="{{ props.mediaUrl }}" controls playsinline></video>
         {% endif %}
       {% else %}
-        <img class="hero-balanced__image" src="{% static 'images/' %}{{ props.mediaUrl }}.jpg" alt="{{ props.mediaAlt|default:'Hero media' }}">
+        {% with db_img=site_images|dict_get:props.mediaUrl %}
+          {% if db_img and db_img.image %}
+            <img class="hero-balanced__image" src="{{ db_img.image.url }}" alt="{{ props.mediaAlt|default:'Hero media' }}">
+          {% else %}
+            <img class="hero-balanced__image" src="{% static 'images/' %}{{ props.mediaUrl }}.jpg" alt="{{ props.mediaAlt|default:'Hero media' }}">
+          {% endif %}
+        {% endwith %}
       {% endif %}
 
       {% if props.mediaLink %}

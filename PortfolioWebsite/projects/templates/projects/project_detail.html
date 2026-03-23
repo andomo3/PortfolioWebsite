@@ -1,36 +1,65 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
-{% block title %}{{ project.title }} - Abba Ndomo{% endblock %}
+{% block title %}{{ project.title }}{% endblock %}
 
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-10 col-lg-8">
-        <h2>{{ project.title }}</h2>
-        <p class="text-muted">{{ project.created_at|date:"F d, Y" }}</p>
+<div class="container py-5 mx-auto" style="max-width: 860px;">
 
-        {% with preview_slug=project.title|slugify %}
-        <img src="{% static 'images/project_previews/' %}{{ preview_slug }}.jpg" class="img-fluid mb-3 rounded shadow-sm" alt="{{ project.title }}">
-        {% endwith %}
+  {# Back link #}
+  <a href="/p/projects/" class="text-muted small d-inline-flex align-items-center gap-1 mb-4 text-decoration-none">
+    <i class="bi bi-arrow-left"></i> All Projects
+  </a>
 
-        <div class="markdown-content mb-3">
-            {{ project.render_description|safe }}
-        </div>
+  {# Title #}
+  <h1 class="display-5 fw-bold mb-3">{{ project.title }}</h1>
 
-        <p class="mb-2"><strong>Tech Stack:</strong> {{ project.tech_stack }}</p>
-
-        {% if project.project_url %}
-        <a href="{{ project.project_url }}" class="btn btn-primary btn-sm mt-2" target="_blank">Visit Project</a>
-        {% endif %}
-
-        {% if project.embed_code %}
-        <div class="d-flex justify-content-center my-4">
-            <div class="ratio ratio-16x9 shadow-sm rounded overflow-hidden" style="width: 100%; max-width: 720px;">
-                {{ project.embed_code|safe }}
-            </div>
-        </div>
-        {% endif %}
-
-        <a href="{% url 'projects:project_list' %}" class="btn btn-outline-secondary mt-4">Back to Projects</a>
+  {# Tech badges #}
+  {% if project.get_tech_list %}
+    <div class="d-flex flex-wrap gap-2 mb-4">
+      {% for tech in project.get_tech_list %}
+        <span class="tech-badge">{{ tech }}</span>
+      {% endfor %}
     </div>
+  {% endif %}
+
+  {# Action buttons #}
+  {% if project.project_url or project.github_url %}
+    <div class="d-flex flex-wrap gap-2 mb-5">
+      {% if project.project_url %}
+        <a href="{{ project.project_url }}" target="_blank" rel="noopener" class="btn btn-primary">
+          <i class="bi bi-box-arrow-up-right me-1"></i> Live Demo
+        </a>
+      {% endif %}
+      {% if project.github_url %}
+        <a href="{{ project.github_url }}" target="_blank" rel="noopener" class="btn btn-outline-secondary">
+          <i class="bi bi-github me-1"></i> GitHub
+        </a>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {# Media — embed takes priority on the detail page; image shown as fallback #}
+  {% if project.embed_code %}
+    <div class="mb-5 d-flex justify-content-center">
+      <div class="rounded overflow-hidden shadow-sm" style="max-width:100%;">
+        {{ project.embed_code|safe }}
+      </div>
+    </div>
+  {% elif project.image %}
+    <div class="mb-5">
+      <img src="{{ project.image.url }}"
+           alt="{{ project.title }}"
+           class="img-fluid rounded shadow-sm d-block mx-auto"
+           style="max-width:100%; height:auto;">
+    </div>
+  {% endif %}
+
+  {# Body / description #}
+  {% if project.body or project.description %}
+    <div class="project-body mx-auto" style="max-width: 720px;">
+      {{ project.render_body|safe }}
+    </div>
+  {% endif %}
+
 </div>
 {% endblock %}

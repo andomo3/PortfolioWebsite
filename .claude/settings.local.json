@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python manage.py migrate projects)",
+      "Bash(python manage.py makemigrations projects)",
+      "Bash(find 'C:\\\\Users\\\\maxst\\\\Desktop\\\\Projects\\\\SUMMER 2025\\\\PortfolioWebsite' -name *.json -type f ! -path */venv/* ! -path */node_modules/* ! -path */.claude/*)"
+    ]
+  }
+}

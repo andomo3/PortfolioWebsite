@@ -21,9 +21,9 @@
 {% elif block.type == "imageGallery" %}
   {% include "builder/blocks/image_gallery.html" with props=block.props %}
 {% elif block.type == "internshipList" %}
-  {% include "builder/blocks/internship_list.html" with props=block.props %}
+  {% include "builder/blocks/internship_list.html" with props=block.props work_experiences=work_experiences featured_experiences=featured_experiences %}
 {% elif block.type == "internshipTimeline" %}
-  {% include "builder/blocks/internship_timeline.html" with props=block.props %}
+  {% include "builder/blocks/internship_timeline.html" with props=block.props work_experiences=work_experiences featured_experiences=featured_experiences %}
 {% elif block.type == "internshipTitle" %}
   {% include "builder/blocks/internship_title.html" with props=block.props %}
 {% elif block.type == "internshipMeta" %}

@@ -14,49 +14,72 @@
       {% endif %}
     {% endwith %}
 
-    {% with items=props|dict_get:"items" %}
+    {% with source=props|dict_get:"source" %}
     <div class="row g-4 mt-1">
-      {% for item in items|as_list %}
-        <div class="col-md-6 col-lg-4">
-          {% with item_url=item|dict_get:"url" %}
-          {% with item_slug=item|dict_get:"slug" %}
-            <a class="project-card-link" href="{% if item_url %}{{ item_url }}{% elif item_slug %}/p/internships/{{ item_slug }}/{% else %}#{% endif %}">
-              <div class="card-premium h-100">
-                <div class="card-body">
-                  {% with company=item|dict_get:"company" %}
-                    {% if company %}
-                      <div class="text-uppercase text-muted small mb-2">{{ company }}</div>
-                    {% endif %}
-                  {% endwith %}
-                  <h3 class="card-title fw-bold">{{ item|dict_get:"title" }}</h3>
-                  {% with item_subtitle=item|dict_get:"subtitle" %}
-                    {% if item_subtitle %}
-                      <p class="card-text text-muted">{{ item_subtitle }}</p>
-                    {% endif %}
-                  {% endwith %}
-                  {% with item_duration=item|dict_get:"duration" %}
-                    {% if item_duration %}
-                      <p class="text-muted small mb-2">{{ item_duration }}</p>
-                    {% endif %}
-                  {% endwith %}
-                  {% with tech_stack=item|dict_get:"techStack" %}
-                    {% if tech_stack %}
-                      <div class="d-flex flex-wrap gap-2 mt-3">
-                        {% for tech in tech_stack|as_list %}
-                          <span class="tech-badge">{{ tech }}</span>
-                        {% endfor %}
-                      </div>
-                    {% endif %}
-                  {% endwith %}
-                </div>
-              </div>
-            </a>
-          {% endwith %}
-          {% endwith %}
-        </div>
-      {% empty %}
-        <p class="text-muted">Add internships to this block.</p>
-      {% endfor %}
+
+      {% if source == "db" %}
+        {# Pull from WorkExperience database records #}
+        {% if source == "db" and props|dict_get:"filter" == "featured" %}
+          {% for exp in featured_experiences %}
+            {% include "builder/blocks/internship_list_card.html" with item=exp %}
+          {% empty %}
+            <p class="text-muted">No featured work experiences yet. Add some in Django Admin under Work Experiences.</p>
+          {% endfor %}
+        {% else %}
+          {% for exp in work_experiences %}
+            {% include "builder/blocks/internship_list_card.html" with item=exp %}
+          {% empty %}
+            <p class="text-muted">No work experiences yet. Add some in Django Admin under Work Experiences.</p>
+          {% endfor %}
+        {% endif %}
+
+      {% else %}
+        {# Manual items from block props (legacy / custom) #}
+        {% with items=props|dict_get:"items" %}
+          {% for item in items|as_list %}
+            <div class="col-md-6 col-lg-4">
+              {% with item_url=item|dict_get:"url" %}
+              {% with item_slug=item|dict_get:"slug" %}
+                <a class="project-card-link" href="{% if item_url %}{{ item_url }}{% elif item_slug %}/p/internships/{{ item_slug }}/{% else %}#{% endif %}">
+                  <div class="card-premium h-100">
+                    <div class="card-body">
+                      {% with company=item|dict_get:"company" %}
+                        {% if company %}
+                          <div class="text-uppercase text-muted small mb-2">{{ company }}</div>
+                        {% endif %}
+                      {% endwith %}
+                      <h3 class="card-title fw-bold">{{ item|dict_get:"title" }}</h3>
+                      {% with item_subtitle=item|dict_get:"subtitle" %}
+                        {% if item_subtitle %}
+                          <p class="card-text text-muted">{{ item_subtitle }}</p>
+                        {% endif %}
+                      {% endwith %}
+                      {% with item_duration=item|dict_get:"duration" %}
+                        {% if item_duration %}
+                          <p class="text-muted small mb-2">{{ item_duration }}</p>
+                        {% endif %}
+                      {% endwith %}
+                      {% with tech_stack=item|dict_get:"techStack" %}
+                        {% if tech_stack %}
+                          <div class="d-flex flex-wrap gap-2 mt-3">
+                            {% for tech in tech_stack|as_list %}
+                              <span class="tech-badge">{{ tech }}</span>
+                            {% endfor %}
+                          </div>
+                        {% endif %}
+                      {% endwith %}
+                    </div>
+                  </div>
+                </a>
+              {% endwith %}
+              {% endwith %}
+            </div>
+          {% empty %}
+            <p class="text-muted">Add internships to this block, or set source to "db" to pull from Admin.</p>
+          {% endfor %}
+        {% endwith %}
+      {% endif %}
+
     </div>
     {% endwith %}
   </div>
